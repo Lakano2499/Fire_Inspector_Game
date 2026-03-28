@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://vevh7majbrmh"]
+
+[ext_resource type="Texture2D" uid="uid://b3kscb3l6hlco" path="res://assets/decorations/static/2_LivingRoom.png" id="1_gs7ls"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqo77"]
+size = Vector2(89, 24)
+
+[node name="StaticBody2D" type="StaticBody2D" unique_id=1931136668]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2104331642]
+texture = ExtResource("1_gs7ls")
+region_enabled = true
+region_rect = Rect2(0, 616, 96, 56)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=395939535]
+position = Vector2(-0.5, -14)
+shape = SubResource("RectangleShape2D_dqo77")
