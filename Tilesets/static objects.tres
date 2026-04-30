@@ -1,15 +1,15 @@
 [gd_resource type="TileSet" format=3 uid="uid://1agmh52pf7ik"]
 
 [ext_resource type="Texture2D" uid="uid://dxwfuhwtbcg7k" path="res://assets/decorations/assets folder/living_room.png" id="1_4p10r"]
-[ext_resource type="Texture2D" uid="uid://ijbl7ti8sy36" path="res://scenes/objects/static_objects/bathroom.png" id="1_db41d"]
-[ext_resource type="Texture2D" uid="uid://dy3c34qakdloe" path="res://scenes/objects/static_objects/cloth.png" id="2_1g2qm"]
+[ext_resource type="Texture2D" uid="uid://ijbl7ti8sy36" path="res://scenes/objects/static/bathroom.png" id="2_4p10r"]
 [ext_resource type="Texture2D" uid="uid://bjld428tvelbj" path="res://assets/decorations/static/12_Kitchen.png" id="2_lydbu"]
-[ext_resource type="Texture2D" uid="uid://dnwu3i6hewaq2" path="res://scenes/objects/static_objects/bedroom.png" id="3_4g5ta"]
 [ext_resource type="Texture2D" uid="uid://b3kscb3l6hlco" path="res://assets/decorations/static/2_LivingRoom.png" id="3_ahwe8"]
 [ext_resource type="Texture2D" uid="uid://ba734028yna6d" path="res://assets/decorations/static/1_Generic_Black_Shadow_32x32.png" id="4_ahwe8"]
 [ext_resource type="Texture2D" uid="uid://dd6bsx8akn7px" path="res://assets/decorations/assets folder/19_Hospital_Black_Shadow_32x32.png" id="6_16rab"]
 [ext_resource type="Texture2D" uid="uid://d2r5k26ue462b" path="res://assets/decorations/static/14_Basement.png" id="6_kjfxt"]
 [ext_resource type="Texture2D" uid="uid://m8ubu22a4bm6" path="res://assets/decorations/static/Hospital_01.png" id="7_3bsfl"]
+[ext_resource type="Texture2D" uid="uid://dy3c34qakdloe" path="res://scenes/objects/static/cloth.png" id="7_16rab"]
+[ext_resource type="Texture2D" uid="uid://dnwu3i6hewaq2" path="res://scenes/objects/static/bedroom.png" id="8_6ysho"]
 [ext_resource type="Texture2D" uid="uid://bdmllr1waerk5" path="res://assets/decorations/assets folder/11_Halloween_Black_Shadow_32x32.png" id="9_6ysho"]
 [ext_resource type="Texture2D" uid="uid://cat0r28rexsmc" path="res://assets/decorations/assets folder/22_Museum_Black_Shadow_32x32.png" id="10_84onp"]
 [ext_resource type="Texture2D" uid="uid://chihfjpa8ejvm" path="res://assets/decorations/assets folder/2_LivingRoom_Black_Shadow_32x32.png" id="11_xobcp"]
@@ -2069,7 +2069,7 @@ texture = ExtResource("1_4p10r")
 19:99/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pgsqd"]
-texture = ExtResource("1_db41d")
+texture = ExtResource("2_4p10r")
 6:0/0 = 0
 7:0/0 = 0
 14:0/0 = 0
@@ -15559,7 +15559,7 @@ texture = ExtResource("6_16rab")
 13:212/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v5kgm"]
-texture = ExtResource("2_1g2qm")
+texture = ExtResource("7_16rab")
 4:0/0 = 0
 5:0/0 = 0
 6:0/0 = 0
@@ -18278,7 +18278,7 @@ texture = ExtResource("2_1g2qm")
 21:132/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lydbu"]
-texture = ExtResource("3_4g5ta")
+texture = ExtResource("8_6ysho")
 18:0/0 = 0
 19:0/0 = 0
 20:0/0 = 0
