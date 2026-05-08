@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Fire_Inspector_Game"
-run/main_scene="uid://cghdxvih2rvmc"
+run/main_scene="uid://dy175rft83te7"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
 [display]

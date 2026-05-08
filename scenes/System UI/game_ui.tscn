@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://btc2840xgci73"]
+
+[ext_resource type="Script" uid="uid://dt3jswvoes4md" path="res://scripts/game_ui.gd" id="1_2dskw"]
+[ext_resource type="Texture2D" uid="uid://vgwhp22ud5bq" path="res://assets/Modern_UI_Style_1_48x48.png" id="1_mbjom"]
+[ext_resource type="Texture2D" uid="uid://d2ki5m8v3d4mv" path="res://assets/Modern_UI_Style_2_48x48.png" id="2_2dskw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5txn"]
+atlas = ExtResource("2_2dskw")
+region = Rect2(480, 555, 45, 45)
+
+[node name="Game UI" type="CanvasLayer" unique_id=1116611700]
+script = ExtResource("1_2dskw")
+
+[node name="Settings" type="TextureButton" parent="." unique_id=1360763848]
+offset_left = 592.0
+offset_top = 8.0
+offset_right = 632.0
+offset_bottom = 48.0
+texture_normal = SubResource("AtlasTexture_f5txn")
+
+[node name="Tasks" type="NinePatchRect" parent="." unique_id=879899534]
+offset_left = 592.0
+offset_top = 64.0
+offset_right = 632.0
+offset_bottom = 104.0
+texture = ExtResource("1_mbjom")
+region_rect = Rect2(384, 549, 48, 54)
+
+[node name="Tasks Completed2" type="NinePatchRect" parent="." unique_id=1116790446]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 165.0
+offset_bottom = 66.0
+texture = ExtResource("1_mbjom")
+region_rect = Rect2(213, 147, 114, 42)
+
+[node name="Bar" type="NinePatchRect" parent="." unique_id=722799815]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 102.99029
+offset_bottom = 48.0
+scale = Vector2(1.609375, 1)
+texture = ExtResource("2_2dskw")
+region_rect = Rect2(810, 348, 60, 24)

@@ -1,67 +1,68 @@
 [gd_scene format=3 uid="uid://b5tuq6ltw1xy7"]
 
-[ext_resource type="Texture2D" uid="uid://r5o6fax5m1sy" path="res://assets/tasks/candle.png" id="1_4d00e"]
 [ext_resource type="Script" uid="uid://dbjv7h27sud7s" path="res://scripts/candle_task.gd" id="1_x6k4f"]
 [ext_resource type="Script" uid="uid://bo100mlcin2lt" path="res://scripts/interact_object.gd" id="2_8275n"]
 [ext_resource type="PackedScene" uid="uid://ijp6utui43b6" path="res://scenes/objects/task_mini_game/candle_blow.tscn" id="2_rqlqk"]
 [ext_resource type="Script" uid="uid://4uh7ilv28vax" path="res://scripts/object_seen.gd" id="3_8275n"]
+[ext_resource type="Texture2D" uid="uid://6fdw7b3n6e4p" path="res://assets/tasks/Candlee.png" id="3_x6k4f"]
 [ext_resource type="PackedScene" uid="uid://2u1cdp68vnpp" path="res://scenes/objects/tasks_objects/arrow.tscn" id="4_ea2ey"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cfk1v"]
-atlas = ExtResource("1_4d00e")
-region = Rect2(51, 0, 51, 93)
+[sub_resource type="AtlasTexture" id="AtlasTexture_2r3gm"]
+atlas = ExtResource("3_x6k4f")
+region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8275n"]
-atlas = ExtResource("1_4d00e")
-region = Rect2(102, 0, 51, 93)
+[sub_resource type="AtlasTexture" id="AtlasTexture_4deuc"]
+atlas = ExtResource("3_x6k4f")
+region = Rect2(128, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ea2ey"]
-atlas = ExtResource("1_4d00e")
-region = Rect2(153, 0, 51, 93)
+[sub_resource type="AtlasTexture" id="AtlasTexture_8png8"]
+atlas = ExtResource("3_x6k4f")
+region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_000ry"]
-atlas = ExtResource("1_4d00e")
-region = Rect2(204, 0, 51, 93)
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqlqk"]
+atlas = ExtResource("3_x6k4f")
+region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x6k4f"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cfk1v")
+"texture": SubResource("AtlasTexture_2r3gm")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8275n")
+"texture": SubResource("AtlasTexture_4deuc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ea2ey")
+"texture": SubResource("AtlasTexture_8png8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_000ry")
+"texture": SubResource("AtlasTexture_rqlqk")
 }],
 "loop": true,
 "name": &"candle",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rqlqk"]
 size = Vector2(10, 18)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2r3gm"]
-radius = 57.0
+radius = 61.008198
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8png8"]
-radius = 173.00288
+radius = 193.0
 
 [node name="candle_task" type="StaticBody2D" unique_id=25875440]
 script = ExtResource("1_x6k4f")
 mini_game_scene = ExtResource("2_rqlqk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1062707719]
-scale = Vector2(0.4191177, 0.35618284)
+position = Vector2(-9.536743e-07, 0)
+scale = Vector2(0.8492647, 0.8179604)
 sprite_frames = SubResource("SpriteFrames_x6k4f")
 animation = &"candle"
 autoplay = "candle"
-frame_progress = 0.27320752
+frame_progress = 0.14012569
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1985629646]
 shape = SubResource("RectangleShape2D_rqlqk")
@@ -74,7 +75,6 @@ indicator = NodePath("../interact_indicator")
 shape = SubResource("CircleShape2D_2r3gm")
 
 [node name="area_seen" type="Area2D" parent="." unique_id=433111429 node_paths=PackedStringArray("highlight_node")]
-visible = false
 script = ExtResource("3_8275n")
 highlight_node = NodePath("../AnimatedSprite2D")
 
@@ -83,4 +83,4 @@ shape = SubResource("CircleShape2D_8png8")
 debug_color = Color(0.8704634, 0.33197242, 0.3059655, 0.41960785)
 
 [node name="interact_indicator" parent="." unique_id=598562937 instance=ExtResource("4_ea2ey")]
-position = Vector2(0, -25)
+position = Vector2(0, -35)
