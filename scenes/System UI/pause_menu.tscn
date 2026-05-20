@@ -1,21 +1,21 @@
 [gd_scene format=3 uid="uid://dkppk05jbr27i"]
 
-[ext_resource type="Texture2D" uid="uid://vgwhp22ud5bq" path="res://assets/Modern_UI_Style_1_48x48.png" id="1_8ermo"]
+[ext_resource type="Texture2D" uid="uid://vgwhp22ud5bq" path="res://assets/static/Modern_UI_Style_1_48x48.png" id="1_8ermo"]
 [ext_resource type="Script" uid="uid://dcm7lw3c16ch8" path="res://scripts/pause_menu.gd" id="1_n575i"]
-[ext_resource type="Texture2D" uid="uid://be7ome1e0458s" path="res://assets/animated buttons/home_button/home_frame_1.tres" id="2_amis2"]
-[ext_resource type="Texture2D" uid="uid://d2ki5m8v3d4mv" path="res://assets/Modern_UI_Style_2_48x48.png" id="2_kn5d5"]
+[ext_resource type="Texture2D" uid="uid://be7ome1e0458s" path="res://assets/animated buttons/Pause Menu/home_button/home_frame_1.tres" id="2_amis2"]
+[ext_resource type="Texture2D" uid="uid://d2ki5m8v3d4mv" path="res://assets/static/Modern_UI_Style_2_48x48.png" id="2_kn5d5"]
 [ext_resource type="Script" uid="uid://shmm4srtlkh" path="res://scripts/animated_button.gd" id="3_wr8lb"]
-[ext_resource type="Texture2D" uid="uid://c2ckluahrg57p" path="res://assets/animated buttons/home_button/home_frame_2.tres" id="4_nlxee"]
-[ext_resource type="Texture2D" uid="uid://bup1krttvlko1" path="res://assets/animated buttons/home_button/home_frame_3.tres" id="5_gdbyr"]
-[ext_resource type="Texture2D" uid="uid://dawm64x8lhafk" path="res://assets/animated buttons/restart_button/restart_button_1.tres" id="6_xblpg"]
-[ext_resource type="Texture2D" uid="uid://bxtb64enw16iy" path="res://assets/animated buttons/restart_button/restart_button_3.tres" id="7_2fa1n"]
-[ext_resource type="Texture2D" uid="uid://c7cctb84o6rsj" path="res://assets/animated buttons/restart_button/restart_button_2.tres" id="8_ppqkq"]
-[ext_resource type="Texture2D" uid="uid://cy0bh1hdgwsh4" path="res://assets/animated buttons/resume_button/resume_button_1.tres" id="10_m1i0e"]
-[ext_resource type="Texture2D" uid="uid://sufyr8a214rt" path="res://assets/animated buttons/resume_button/resume_button_2.tres" id="11_3fk7m"]
-[ext_resource type="Texture2D" uid="uid://b74wwjwe70h3e" path="res://assets/animated buttons/resume_button/resume_button_3.tres" id="12_wg08m"]
-[ext_resource type="Texture2D" uid="uid://brpfbhlwkji5r" path="res://assets/animated buttons/Slider/knob.tres" id="13_51ewq"]
-[ext_resource type="Texture2D" uid="uid://de5d15q7rh8ty" path="res://assets/animated buttons/Slider/knob_highlight.tres" id="14_n575i"]
-[ext_resource type="Texture2D" uid="uid://b1yi6kxb326sk" path="res://assets/animated buttons/Slider/slider_track.tres" id="15_563hn"]
+[ext_resource type="Texture2D" uid="uid://c2ckluahrg57p" path="res://assets/animated buttons/Pause Menu/home_button/home_frame_2.tres" id="4_nlxee"]
+[ext_resource type="Texture2D" uid="uid://bup1krttvlko1" path="res://assets/animated buttons/Pause Menu/home_button/home_frame_3.tres" id="5_gdbyr"]
+[ext_resource type="Texture2D" uid="uid://dawm64x8lhafk" path="res://assets/animated buttons/Pause Menu/restart_button/restart_button_1.tres" id="6_xblpg"]
+[ext_resource type="Texture2D" uid="uid://bxtb64enw16iy" path="res://assets/animated buttons/Pause Menu/restart_button/restart_button_3.tres" id="7_2fa1n"]
+[ext_resource type="Texture2D" uid="uid://c7cctb84o6rsj" path="res://assets/animated buttons/Pause Menu/restart_button/restart_button_2.tres" id="8_ppqkq"]
+[ext_resource type="Texture2D" uid="uid://cy0bh1hdgwsh4" path="res://assets/animated buttons/Pause Menu/resume_button/resume_button_1.tres" id="10_m1i0e"]
+[ext_resource type="Texture2D" uid="uid://sufyr8a214rt" path="res://assets/animated buttons/Pause Menu/resume_button/resume_button_2.tres" id="11_3fk7m"]
+[ext_resource type="Texture2D" uid="uid://b74wwjwe70h3e" path="res://assets/animated buttons/Pause Menu/resume_button/resume_button_3.tres" id="12_wg08m"]
+[ext_resource type="Texture2D" uid="uid://brpfbhlwkji5r" path="res://assets/animated buttons/Pause Menu/slider/knob.tres" id="13_51ewq"]
+[ext_resource type="Texture2D" uid="uid://de5d15q7rh8ty" path="res://assets/animated buttons/Pause Menu/slider/knob_highlight.tres" id="14_n575i"]
+[ext_resource type="Texture2D" uid="uid://b1yi6kxb326sk" path="res://assets/animated buttons/Pause Menu/slider/slider_track.tres" id="15_563hn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xblpg"]
 atlas = ExtResource("2_kn5d5")
@@ -151,10 +151,10 @@ patch_margin_bottom = 16
 
 [node name="sfx icon" type="NinePatchRect" parent="MainPanel/Box2" unique_id=161472074]
 layout_mode = 0
-offset_left = 24.000004
-offset_top = 24.0
-offset_right = 88.0
-offset_bottom = 56.0
+offset_left = 20.000004
+offset_top = 22.0
+offset_right = 84.0
+offset_bottom = 54.0
 scale = Vector2(0.5219601, 0.8790617)
 texture = ExtResource("2_kn5d5")
 region_rect = Rect2(1441, 1115, 51, 34)
@@ -165,10 +165,10 @@ patch_margin_bottom = 16
 
 [node name="sfx_effects_slider" type="HSlider" parent="MainPanel/Box2" unique_id=1769301977]
 layout_mode = 0
-offset_left = 58.0
-offset_top = 32.0
-offset_right = 252.16241
-offset_bottom = 68.0
+offset_left = 56.0
+offset_top = 29.0
+offset_right = 250.16241
+offset_bottom = 65.0
 scale = Vector2(0.49958166, 0.39368343)
 theme_override_icons/grabber = ExtResource("13_51ewq")
 theme_override_icons/grabber_highlight = ExtResource("14_n575i")
@@ -180,20 +180,20 @@ value = 0.01
 
 [node name="music icon" type="NinePatchRect" parent="MainPanel/Box2" unique_id=1171414627]
 layout_mode = 0
-offset_left = 27.0
-offset_top = 64.0
-offset_right = 67.0
-offset_bottom = 104.0
+offset_left = 20.0
+offset_top = 62.0
+offset_right = 60.0
+offset_bottom = 102.0
 scale = Vector2(0.5391904, 0.50959015)
 texture = ExtResource("2_kn5d5")
 region_rect = Rect2(1017, 57, 30, 30)
 
 [node name="music_slider" type="HSlider" parent="MainPanel/Box2" unique_id=1829679229]
 layout_mode = 0
-offset_left = 58.0
-offset_top = 66.0
-offset_right = 252.16241
-offset_bottom = 102.0
+offset_left = 56.0
+offset_top = 65.0
+offset_right = 250.16241
+offset_bottom = 101.0
 scale = Vector2(0.49958166, 0.39368343)
 theme_override_icons/grabber = ExtResource("13_51ewq")
 theme_override_icons/grabber_highlight = ExtResource("14_n575i")
@@ -205,18 +205,19 @@ value = 0.01
 
 [node name="close" type="NinePatchRect" parent="MainPanel" unique_id=1934959831]
 layout_mode = 0
-offset_left = 213.0
-offset_top = -5.0
-offset_right = 235.0
-offset_bottom = 16.0
+offset_left = 204.0
+offset_top = -2.0
+offset_right = 236.0
+offset_bottom = 27.0
 texture = ExtResource("1_8ermo")
 region_rect = Rect2(174, 387, 84, 87)
 
 [node name="X" type="TextureButton" parent="MainPanel/close" unique_id=2119717400]
 layout_mode = 0
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 30.0
-offset_bottom = 30.0
+offset_left = 3.999992
+offset_top = 5.0
+offset_right = 43.091972
+offset_bottom = 41.102203
 scale = Vector2(0.61393696, 0.55398285)
 texture_normal = SubResource("AtlasTexture_n575i")
+stretch_mode = 5

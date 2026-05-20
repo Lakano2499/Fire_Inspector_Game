@@ -386,11 +386,22 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eog6v"]
 size = Vector2(20, 15)
 
+[sub_resource type="Gradient" id="Gradient_eog6v"]
+offsets = PackedFloat32Array(0, 0.0022624435, 0.009049774, 0.800905, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.09728507, 0.09728507, 0.09728507, 1, 0.9467787, 0.9467787, 0.9467787, 1, 0.98930717, 0.98930717, 0.98930717, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xc415"]
+gradient = SubResource("Gradient_eog6v")
+width = 1000
+height = 1000
+fill = 1
+fill_from = Vector2(0.4871795, 0.52136755)
+fill_to = Vector2(0.491453, 0.52136755)
+
 [node name="player1" type="CharacterBody2D" unique_id=130816891]
 script = ExtResource("1_gneq0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1441161820]
-position = Vector2(-2.5000005, 5)
 scale = Vector2(1.09375, 1.09375)
 sprite_frames = SubResource("SpriteFrames_h5b11")
 animation = &"idle_front"
@@ -398,5 +409,10 @@ autoplay = "idle_front"
 frame_progress = 0.8884614
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=98879407]
-position = Vector2(-3, 31.5)
+position = Vector2(0, 26.5)
 shape = SubResource("RectangleShape2D_eog6v")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1270867508]
+color = Color(0.6267021, 0.60604554, 0.59084237, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_xc415")

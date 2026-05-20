@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ijp6utui43b6" path="res://scenes/objects/task_mini_game/candle_blow.tscn" id="2_rqlqk"]
 [ext_resource type="Script" uid="uid://4uh7ilv28vax" path="res://scripts/object_seen.gd" id="3_8275n"]
 [ext_resource type="Texture2D" uid="uid://6fdw7b3n6e4p" path="res://assets/tasks/Candlee.png" id="3_x6k4f"]
-[ext_resource type="PackedScene" uid="uid://2u1cdp68vnpp" path="res://scenes/objects/tasks_objects/arrow.tscn" id="4_ea2ey"]
+[ext_resource type="PackedScene" uid="uid://2u1cdp68vnpp" path="res://scenes/System UI/arrow.tscn" id="4_ea2ey"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2r3gm"]
 atlas = ExtResource("3_x6k4f")

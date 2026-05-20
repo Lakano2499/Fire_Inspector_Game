@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://btc2840xgci73"]
 
 [ext_resource type="Script" uid="uid://dt3jswvoes4md" path="res://scripts/game_ui.gd" id="1_2dskw"]
-[ext_resource type="Texture2D" uid="uid://vgwhp22ud5bq" path="res://assets/Modern_UI_Style_1_48x48.png" id="1_mbjom"]
-[ext_resource type="Texture2D" uid="uid://d2ki5m8v3d4mv" path="res://assets/Modern_UI_Style_2_48x48.png" id="2_2dskw"]
+[ext_resource type="Texture2D" uid="uid://vgwhp22ud5bq" path="res://assets/static/Modern_UI_Style_1_48x48.png" id="1_mbjom"]
+[ext_resource type="Texture2D" uid="uid://d2ki5m8v3d4mv" path="res://assets/static/Modern_UI_Style_2_48x48.png" id="2_2dskw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f5txn"]
 atlas = ExtResource("2_2dskw")
@@ -19,10 +19,10 @@ offset_bottom = 48.0
 texture_normal = SubResource("AtlasTexture_f5txn")
 
 [node name="Tasks" type="NinePatchRect" parent="." unique_id=879899534]
-offset_left = 592.0
-offset_top = 64.0
-offset_right = 632.0
-offset_bottom = 104.0
+offset_left = 539.0
+offset_top = 10.0
+offset_right = 579.0
+offset_bottom = 50.0
 texture = ExtResource("1_mbjom")
 region_rect = Rect2(384, 549, 48, 54)
 

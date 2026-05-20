@@ -25,4 +25,4 @@ func _on_home_pressed():
 	get_tree().paused = false
 	# Load the title screen
 	# NOTE: Check your FileSystem to make sure this is the exact path to your title screen!
-	get_tree().change_scene_to_file("res://scenes/objects/User Interface/title_screen.tscn")
+	get_tree().change_scene_to_file("res://scenes/System UI/title_screen.tscn")
