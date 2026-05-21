@@ -3,42 +3,52 @@
 [ext_resource type="Script" uid="uid://dt3jswvoes4md" path="res://scripts/game_ui.gd" id="1_2dskw"]
 [ext_resource type="Texture2D" uid="uid://vgwhp22ud5bq" path="res://assets/static/Modern_UI_Style_1_48x48.png" id="1_mbjom"]
 [ext_resource type="Texture2D" uid="uid://d2ki5m8v3d4mv" path="res://assets/static/Modern_UI_Style_2_48x48.png" id="2_2dskw"]
+[ext_resource type="Texture2D" uid="uid://dot7qg6sv3lp2" path="res://assets/static/checklist_ui.png" id="3_2dskw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f5txn"]
 atlas = ExtResource("2_2dskw")
 region = Rect2(480, 555, 45, 45)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_agc66"]
+atlas = ExtResource("1_mbjom")
+region = Rect2(390, 0, 36, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmnip"]
+atlas = ExtResource("1_mbjom")
+region = Rect2(531, 54, 42, 36)
+
 [node name="Game UI" type="CanvasLayer" unique_id=1116611700]
 script = ExtResource("1_2dskw")
 
 [node name="Settings" type="TextureButton" parent="." unique_id=1360763848]
-offset_left = 592.0
+offset_left = 589.0
 offset_top = 8.0
-offset_right = 632.0
-offset_bottom = 48.0
+offset_right = 634.0
+offset_bottom = 53.0
 texture_normal = SubResource("AtlasTexture_f5txn")
 
-[node name="Tasks" type="NinePatchRect" parent="." unique_id=879899534]
-offset_left = 539.0
-offset_top = 10.0
-offset_right = 579.0
-offset_bottom = 50.0
-texture = ExtResource("1_mbjom")
-region_rect = Rect2(384, 549, 48, 54)
+[node name="CheckList" type="TextureButton" parent="." unique_id=1431260624]
+offset_left = 535.0
+offset_top = 7.0000043
+offset_right = 566.0
+offset_bottom = 46.000004
+scale = Vector2(1.199226, 1.1186723)
+size_flags_horizontal = 6
+size_flags_vertical = 8
+texture_normal = ExtResource("3_2dskw")
 
-[node name="Tasks Completed2" type="NinePatchRect" parent="." unique_id=1116790446]
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 165.0
-offset_bottom = 66.0
-texture = ExtResource("1_mbjom")
-region_rect = Rect2(213, 147, 114, 42)
+[node name="GameOverTest" type="TextureButton" parent="." unique_id=868526095]
+offset_left = 610.0
+offset_top = 330.0
+offset_right = 650.0
+offset_bottom = 378.0
+scale = Vector2(0.63471305, 0.5697703)
+texture_normal = SubResource("AtlasTexture_agc66")
 
-[node name="Bar" type="NinePatchRect" parent="." unique_id=722799815]
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 102.99029
-offset_bottom = 48.0
-scale = Vector2(1.609375, 1)
-texture = ExtResource("2_2dskw")
-region_rect = Rect2(810, 348, 60, 24)
+[node name="GameFinishTest" type="TextureButton" parent="." unique_id=690846046]
+offset_left = 608.00006
+offset_top = 297.00003
+offset_right = 650.00006
+offset_bottom = 333.00003
+scale = Vector2(0.6230033, 0.7185955)
+texture_normal = SubResource("AtlasTexture_mmnip")

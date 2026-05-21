@@ -23,6 +23,10 @@ region = Rect2(96, 0, 32, 32)
 atlas = ExtResource("3_x6k4f")
 region = Rect2(32, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6k4f"]
+atlas = ExtResource("3_x6k4f")
+region = Rect2(0, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_x6k4f"]
 animations = [{
 "frames": [{
@@ -41,6 +45,14 @@ animations = [{
 "loop": true,
 "name": &"candle",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6k4f")
+}],
+"loop": false,
+"name": &"candle_no_flame",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rqlqk"]
@@ -60,14 +72,15 @@ mini_game_scene = ExtResource("2_rqlqk")
 position = Vector2(-9.536743e-07, 0)
 scale = Vector2(0.8492647, 0.8179604)
 sprite_frames = SubResource("SpriteFrames_x6k4f")
-animation = &"candle"
+animation = &"candle_no_flame"
 autoplay = "candle"
-frame_progress = 0.14012569
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1985629646]
 shape = SubResource("RectangleShape2D_rqlqk")
 
 [node name="interact" type="Area2D" parent="." unique_id=650584505 node_paths=PackedStringArray("indicator")]
+visible = false
 script = ExtResource("2_8275n")
 indicator = NodePath("../interact_indicator")
 

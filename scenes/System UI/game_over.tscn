@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://gsd8nyq8wyur"]
+
+[ext_resource type="FontFile" uid="uid://ca8188ftvgnay" path="res://assets/fonts/PixelifySans-Regular.ttf" id="1_h2hn4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jjyqn"]
+
+[node name="GameOver" type="CanvasLayer" unique_id=1943859354]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2131790666]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.6946849, 0.029394893, 0.005467942, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=816032485]
+offset_left = 58.0
+offset_top = 128.0
+offset_right = 586.0
+offset_bottom = 255.0
+theme_override_fonts/normal_font = ExtResource("1_h2hn4")
+theme_override_font_sizes/normal_font_size = 100
+text = "GAME OVER"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1082763763]
+sprite_frames = SubResource("SpriteFrames_jjyqn")

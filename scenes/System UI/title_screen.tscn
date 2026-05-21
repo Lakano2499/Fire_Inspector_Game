@@ -56,7 +56,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PlayButton" type="TextureButton" parent="ButtonContainer" unique_id=1039016830]
-visible = false
 custom_minimum_size = Vector2(120, 30)
 layout_mode = 0
 offset_left = -5.0
@@ -76,10 +75,10 @@ frame_3 = ExtResource("6_b08ee")
 visible = false
 custom_minimum_size = Vector2(120, 30)
 layout_mode = 0
-offset_left = 59.0
-offset_top = 62.0
-offset_right = 179.0
-offset_bottom = 111.0
+offset_left = 254.0
+offset_top = -96.0
+offset_right = 374.0
+offset_bottom = -47.0
 size_flags_horizontal = 4
 texture_normal = SubResource("AtlasTexture_1kgpc")
 ignore_texture_size = true
@@ -90,13 +89,12 @@ frame_2 = ExtResource("7_b08ee")
 frame_3 = ExtResource("9_1kgpc")
 
 [node name="QuitButton" type="TextureButton" parent="ButtonContainer" unique_id=126233008]
-visible = false
 custom_minimum_size = Vector2(120, 30)
 layout_mode = 0
-offset_left = -61.0
-offset_top = 62.0
-offset_right = 59.0
-offset_bottom = 111.0
+offset_left = -1.0
+offset_top = 63.0
+offset_right = 119.0
+offset_bottom = 112.0
 size_flags_horizontal = 4
 texture_normal = ExtResource("11_01ipw")
 ignore_texture_size = true
