@@ -17,6 +17,16 @@ region = Rect2(390, 0, 36, 48)
 atlas = ExtResource("1_mbjom")
 region = Rect2(531, 54, 42, 36)
 
+[sub_resource type="Gradient" id="Gradient_f5txn"]
+offsets = PackedFloat32Array(0, 0.09266409, 0.8648649, 0.98841697, 0.992278, 0.996139, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.008833828, 0.008833828, 0.008833828, 1, 0.09010506, 0.09010506, 0.09010506, 1, 0.5895605, 0.5895605, 0.5895605, 1, 0.8610039, 0.8610039, 0.8610039, 1, 0.6329915, 0.6329915, 0.6329915, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_agc66"]
+gradient = SubResource("Gradient_f5txn")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
 [node name="Game UI" type="CanvasLayer" unique_id=1116611700]
 script = ExtResource("1_2dskw")
 
@@ -38,6 +48,7 @@ size_flags_vertical = 8
 texture_normal = ExtResource("3_2dskw")
 
 [node name="GameOverTest" type="TextureButton" parent="." unique_id=868526095]
+visible = false
 offset_left = 610.0
 offset_top = 330.0
 offset_right = 650.0
@@ -46,9 +57,29 @@ scale = Vector2(0.63471305, 0.5697703)
 texture_normal = SubResource("AtlasTexture_agc66")
 
 [node name="GameFinishTest" type="TextureButton" parent="." unique_id=690846046]
+visible = false
 offset_left = 608.00006
 offset_top = 297.00003
 offset_right = 650.00006
 offset_bottom = 333.00003
 scale = Vector2(0.6230033, 0.7185955)
 texture_normal = SubResource("AtlasTexture_mmnip")
+
+[node name="TimerLabel" type="Label" parent="." unique_id=1350427167]
+offset_left = 290.0
+offset_top = 7.0
+offset_right = 361.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 24
+text = "00:00"
+
+[node name="DangerOverlay" type="TextureRect" parent="." unique_id=651810558]
+modulate = Color(1, 0.32, 0.36533326, 1)
+self_modulate = Color(1, 0.04000002, 0.04000002, 0.4)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_agc66")

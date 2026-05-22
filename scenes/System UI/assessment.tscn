@@ -1,16 +1,15 @@
 [gd_scene format=3 uid="uid://b25cp3g67ilgg"]
 
 [ext_resource type="Texture2D" uid="uid://vgwhp22ud5bq" path="res://assets/static/Modern_UI_Style_1_48x48.png" id="1_1uq7h"]
+[ext_resource type="Script" uid="uid://qmhlb6wugsrm" path="res://scripts/assessment.gd" id="2_f8ro0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_56xc1"]
 atlas = ExtResource("1_1uq7h")
 region = Rect2(153, 240, 126, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_f8ro0"]
-atlas = ExtResource("1_1uq7h")
-region = Rect2(30, 507, 84, 78)
-
 [node name="Assessment" type="CanvasLayer" unique_id=1808164379]
+process_mode = 3
+script = ExtResource("2_f8ro0")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1436661956]
 anchors_preset = 15
@@ -24,18 +23,18 @@ patch_margin_top = 18
 patch_margin_right = 18
 patch_margin_bottom = 18
 
-[node name="NinePatchRect2" type="NinePatchRect" parent="." unique_id=1865145719]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 75.0
-offset_top = 33.0
-offset_right = -42.0
-offset_bottom = 4.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_f8ro0")
-patch_margin_left = 18
-patch_margin_top = 18
-patch_margin_right = 18
-patch_margin_bottom = 18
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1845293315]
+offset_left = 145.0
+offset_top = 45.0
+offset_right = 485.0
+offset_bottom = 282.0
+bbcode_enabled = true
+text = "blah blah"
+
+[node name="ContinueButton" type="Button" parent="." unique_id=1597505334]
+offset_left = 211.0
+offset_top = 308.0
+offset_right = 386.0
+offset_bottom = 351.0
+text = "Read Report
+"

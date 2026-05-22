@@ -1,39 +1,96 @@
 extends Node
 
 signal tasks_updated
+signal time_ran_out 
+signal game_won_automatically 
+signal game_over_triggered # (Just making sure this is declared!)
 
-# 1. The Master List
+# --- TIMER VARIABLES ---
+var time_elapsed: float = 0.0 
+var time_remaining: float = 60.0 
+var is_timer_running: bool = true
+
+# --- ASSESSMENT TRACKERS ---
+var poured_water_on_grease: bool = false
+var house_burned_down: bool = false
+var stove_task_completed: bool = false 
+
+# --- NEW: DANGER TRACKERS ---
+var stove_task_active: bool = false
+var stove_time_left: float = 0.0
+var stove_wait_time: float = 30.0
+
 var master_task_list: Array = [
-	"Turn off lit candles", # Your grouped task
-	"Cover the burning pan",
-	"Unplug the iron",
-	"Check the smoke alarm"
+	"Turn off lit candles", 
 ]
 
-# 2. Set the REQUIRED amount to finish a task
 var task_max: Dictionary = {
-	"Turn off lit candles": 3, # Requires 3 candles!
-	"Cover the burning pan": 1,
-	"Unplug the iron": 1,
-	"Check the smoke alarm": 1
+	"Turn off lit candles": 3, 
 }
 
-# 3. This tracks the CURRENT progress (0, 1, 2, etc.)
 var task_progress: Dictionary = {}
 
-# Keep your player lock variable here!
 var player_can_move: bool = true 
 
 func _ready() -> void:
-	# Automatically set progress to 0 for everything when the game starts
+	# We intentionally leave this blank because the UI will trigger the reset!
+	pass
+		
+# --- RESET GAME STATE ---
+func reset_game_state() -> void:
+	time_elapsed = 0.0
+	time_remaining = 60.0 # Reset to 1 minute!
+	is_timer_running = true
+	
+	poured_water_on_grease = false
+	house_burned_down = false
+	stove_task_completed = false
+	
+	stove_task_active = false
+	stove_time_left = 0.0
+	
+	# Wipe the checklist clean
 	for task in master_task_list:
 		task_progress[task] = 0
 
+func _process(delta: float) -> void:
+	if is_timer_running:
+		time_elapsed += delta 
+		time_remaining -= delta # Count down!
+		
+		# Did the clock hit zero?
+		if time_remaining <= 0.0:
+			time_remaining = 0.0
+			is_timer_running = false
+			time_ran_out.emit()
+			
+# --- AUTO-WIN LOGIC ---
+func check_for_auto_win() -> void:
+	# 1. Check if all standard checklist tasks are maxed out
+	for task in master_task_list:
+		if task_progress[task] < task_max[task]:
+			return # Someone hasn't finished the checklist! Exit.
+			
+	# 2. Check if the emergency stove task is completely safe
+	if not stove_task_completed:
+		return # The stove is still a hazard! Exit.
+		
+	# 3. If we made it this far, EVERYTHING is done! Tell the UI!
+	game_won_automatically.emit()
+
 func complete_task(task_name: String) -> void:
-	# Check if the task exists and isn't fully maxed out yet
 	if task_progress.has(task_name) and task_progress[task_name] < task_max[task_name]:
 		task_progress[task_name] += 1
 		print("Checklist updated: ", task_name, " ", task_progress[task_name], "/", task_max[task_name])
 		
-		# Tell the checklist UI to redraw
 		tasks_updated.emit()
+		check_for_auto_win() # <-- Check if this was the final task!
+
+func are_all_tasks_complete() -> bool:
+	for task in master_task_list:
+		if task_progress[task] < task_max[task]:
+			return false 
+	if not stove_task_completed:
+		return false 	
+	
+	return true

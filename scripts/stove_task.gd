@@ -9,6 +9,7 @@ extends StaticBody2D
 
 var is_completed = false
 var has_poured_water = false
+var fail_timer: Timer
 
 func _ready() -> void:
 	# 1. Start safely at default state
@@ -19,6 +20,12 @@ func _ready() -> void:
 		alert_marker.hide()
 	_set_interactions_enabled(false)
 	
+	fail_timer = Timer.new()
+	fail_timer.wait_time = 30.0 # 30 seconds to fix the fire!
+	fail_timer.one_shot = true
+	add_child(fail_timer)
+	fail_timer.timeout.connect(_on_fail_timeout)
+	
 	# 3. Connect our signals
 	interact_area.interacted.connect(_on_interacted)
 	anim_sprite.animation_finished.connect(_on_animation_finished)
@@ -27,14 +34,30 @@ func _ready() -> void:
 	# CHANGE THIS TO 120.0 LATER FOR THE 2-MINUTE MARK
 	var timer = get_tree().create_timer(5.0) 
 	timer.timeout.connect(_start_fire)
+	
+func _process(_delta: float) -> void:
+	# Constantly tell the global manager how much time is left!
+	if fail_timer and not fail_timer.is_stopped():
+		TaskManager.stove_time_left = fail_timer.time_left
+		TaskManager.stove_wait_time = fail_timer.wait_time
+	else:
+		TaskManager.stove_time_left = 0.0
 
 func _start_fire() -> void:
 	# The timer popped! Start the initial fire animation
 	anim_sprite.play("burning_pan")
 	
+	fail_timer.start()
+	
 	# Turn on the map alert so the player knows there's an emergency!
 	if alert_marker:
 		alert_marker.show()
+	
+	TaskManager.stove_task_active = true
+		
+func _on_fail_timeout() -> void:
+	TaskManager.house_burned_down = true 
+	TaskManager.game_over_triggered.emit()
 
 func _on_animation_finished() -> void:
 	# Godot checks this function every time ANY animation finishes.
@@ -84,7 +107,6 @@ func _on_interacted() -> void:
 		_set_interactions_enabled(false) # Disable clicks while animating
 		anim_sprite.play("burning_pan_pour_water")
 
-# A quick helper function so we don't have to copy-paste this 4 times
 func _set_interactions_enabled(enabled: bool) -> void:
 	# Note: using set_deferred prevents physics glitching if disabled mid-collision
 	interact_area.set_deferred("monitoring", enabled)
@@ -95,3 +117,13 @@ func _set_interactions_enabled(enabled: bool) -> void:
 func _mark_as_completed() -> void:
 	is_completed = true
 	_set_interactions_enabled(false)
+	
+	# Stop the fail timer, they saved the house!
+	if fail_timer:
+		fail_timer.stop() 
+		
+	# 1. TELL THE MANAGER THE STOVE IS SAFE FIRST!
+	TaskManager.stove_task_completed = true
+	
+	# 2. THEN ASK IT TO CHECK FOR THE WIN!
+	TaskManager.check_for_auto_win()

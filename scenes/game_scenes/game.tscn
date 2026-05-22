@@ -7958,17 +7958,17 @@ tile_set = SubResource("TileSet_acboe")
 [node name="candle_task2" parent="House/Task Objects" unique_id=25875440 instance=ExtResource("8_nhds7")]
 z_index = 10
 z_as_relative = false
-position = Vector2(2504, 587)
+position = Vector2(1512, 252)
 
 [node name="candle_task3" parent="House/Task Objects" unique_id=666424536 instance=ExtResource("8_nhds7")]
 z_index = 10
 z_as_relative = false
-position = Vector2(2604, -256)
+position = Vector2(1575, 251)
 
 [node name="candle_task" parent="House/Task Objects" unique_id=1192143631 instance=ExtResource("8_nhds7")]
 z_index = 10
 z_as_relative = false
-position = Vector2(966, 922)
+position = Vector2(1457, 250)
 
 [node name="stove_task" parent="House/Task Objects" unique_id=1793389285 instance=ExtResource("6_y8umb")]
 z_index = 10
@@ -8019,7 +8019,7 @@ position = Vector2(2454, 709)
 
 [node name="player1" parent="." unique_id=130816891 instance=ExtResource("4_cg2mp")]
 z_index = 20
-position = Vector2(2402, -250)
+position = Vector2(1501, 460)
 
 [node name="Camera2D" type="Camera2D" parent="player1" unique_id=1142758138]
 position = Vector2(-12, 0)
