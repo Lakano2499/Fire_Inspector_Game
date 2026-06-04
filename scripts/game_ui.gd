@@ -54,7 +54,7 @@ func _process(delta: float) -> void:
 	if TaskManager.stove_task_active and not TaskManager.stove_task_completed and TaskManager.stove_time_left > 0:
 		
 		# Lock the pulse to a constant, slow, comfortable speed
-		var constant_speed = 2.0 
+		var constant_speed = 1.5 
 		
 		pulse_time += delta * constant_speed
 		
