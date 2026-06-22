@@ -9,11 +9,22 @@ const ASSESSMENT_SCREEN = "res://scenes/System UI/assessment.tscn"
 
 # --- NODE REFERENCES ---
 @onready var checklist_button = $CheckList 
-@onready var game_over_test_btn = $GameOverTest 
-@onready var game_finish_test_btn = get_node_or_null("GameFinishTest") # Used get_node_or_null just in case you deleted this button
+@onready var settings_button = $Settings # NEW: Reference to the Settings button
+@onready var game_over_test_btn = get_node_or_null("GameOverTest")
+@onready var game_finish_test_btn = get_node_or_null("GameFinishTest") 
 @onready var timer_label = $TimerLabel 
 @onready var danger_overlay = $DangerOverlay
+@onready var checklist_pointer = get_node_or_null("CheckList/interact_indicator")
 
+# --- MOBILE CONTROLS REFERENCES ---
+@onready var joystick_base = get_node_or_null("MobileControls/JoystickBase")
+@onready var joystick_knob = get_node_or_null("MobileControls/JoystickBase/Knob")
+
+# --- NEW: BUTTON REFERENCES ---
+@onready var interact_btn = get_node_or_null("MobileControls/Node/InteractButton")
+@onready var dialogue_controls = get_node_or_null("MobileControls/Node/ForDialogueChoiceBox")
+@onready var up_btn = get_node_or_null("MobileControls/Node/ForDialogueChoiceBox/up")
+@onready var down_btn = get_node_or_null("MobileControls/Node/ForDialogueChoiceBox/down")
 
 # --- VARIABLES ---
 var checklist_instance = null 
@@ -21,52 +32,121 @@ var is_game_over_active = false
 var game_over_timer: Timer
 var pulse_time: float = 0.0
 
+# --- JOYSTICK VARIABLES ---
+var is_joystick_active: bool = false
+var joystick_touch_id: int = -1
+var joystick_center: Vector2
+var joystick_max_dist: float = 60.0 
+
 func _ready() -> void:
-	# 1. WIPE THE SLATE CLEAN EVERY TIME THE LEVEL LOADS!
 	TaskManager.reset_game_state()
 	
-	# 2. Connect standard buttons
-	$Settings.pressed.connect(_on_settings_pressed)
+	settings_button.pressed.connect(_on_settings_pressed)
 	checklist_button.pressed.connect(_toggle_checklist)
 	
-	# Connect test buttons safely
 	if game_over_test_btn:
 		game_over_test_btn.pressed.connect(_trigger_actual_game_over) 
 	if game_finish_test_btn:
 		game_finish_test_btn.pressed.connect(_trigger_game_success)
 	
-	# 3. Listen for global TaskManager signals!
 	TaskManager.game_over_triggered.connect(_trigger_actual_game_over)
 	TaskManager.time_ran_out.connect(_on_time_ran_out)
-	
-	# THIS WAS MISSING! It tells the UI to route to success when the tasks are done.
 	TaskManager.game_won_automatically.connect(_trigger_game_success)
+	
+	if joystick_base:
+		await get_tree().process_frame 
+		joystick_center = joystick_base.global_position + (joystick_base.size / 2.0)
+
+	# --- CONNECT MOBILE BUTTONS ---
+	if interact_btn:
+		interact_btn.button_down.connect(func():
+			_simulate_action("interact", true) 
+			_simulate_action("ui_accept", true) 
+		)
+		interact_btn.button_up.connect(func():
+			_simulate_action("interact", false)
+			_simulate_action("ui_accept", false)
+		)
+
+	if up_btn:
+		up_btn.button_down.connect(func(): _simulate_action("ui_up", true))
+		up_btn.button_up.connect(func(): _simulate_action("ui_up", false))
+
+	if down_btn:
+		down_btn.button_down.connect(func(): _simulate_action("ui_down", true))
+		down_btn.button_up.connect(func(): _simulate_action("ui_down", false))
 
 func _process(delta: float) -> void:
-	# 1. The standard clock logic
+	# 1. Clock logic
 	var total_seconds = int(TaskManager.time_remaining)
 	var minutes = total_seconds / 60
 	var seconds = total_seconds % 60
 	timer_label.text = str(minutes).pad_zeros(2) + ":" + str(seconds).pad_zeros(2)
 
-	# 2. THE DANGER OVERLAY LOGIC (Updated for accessibility)
-	# Check if the fire is active, NOT completed, and the timer is actually ticking
-	if TaskManager.stove_task_active and not TaskManager.stove_task_completed and TaskManager.stove_time_left > 0:
-		
-		# Lock the pulse to a constant, slow, comfortable speed
-		var constant_speed = 1.5 
-		
-		pulse_time += delta * constant_speed
-		
-		# Use absolute sine wave to bounce between 0.0 (invisible) and 1.0 (fully red)
-		var alpha_pop = abs(sin(pulse_time))
-		
-		# We multiply by 0.6 so the red is never 100% opaque, keeping the game visible
-		danger_overlay.modulate.a = alpha_pop * 0.6 
-		
+	# --- POINTER VISIBILITY LOGIC ---
+	if TaskManager.tutorial_pointer_active:
+		if checklist_pointer: checklist_pointer.show()
 	else:
-		# If the task is safe (or hasn't started), keep the screen totally clear!
+		if checklist_pointer: checklist_pointer.hide()
+
+	# 2. Danger Overlay Logic
+	var is_danger_active = false
+	
+	# Check A: Is the main game stove on fire?
+	if TaskManager.stove_task_active and not TaskManager.stove_task_completed and TaskManager.stove_time_left > 0:
+		is_danger_active = true
+		
+	# Check B: Is the Tutorial Map emergency active?
+	var current_map = get_tree().current_scene
+	if current_map and "is_emergency_active" in current_map:
+		if current_map.is_emergency_active:
+			is_danger_active = true
+
+	# Apply the pulse if either condition is true!
+	if is_danger_active:
+		var constant_speed = 1.5 
+		pulse_time += delta * constant_speed
+		danger_overlay.modulate.a = abs(sin(pulse_time)) * 0.6 
+	else:
 		danger_overlay.modulate.a = 0.0
+		
+	# 3. Dialogue Controls Visibility (UPDATED)
+	if dialogue_controls:
+		# ONLY show the up/down choice buttons if we are waiting for a choice AND they are on mobile
+		if DialogueManager.is_awaiting_choice and TaskManager.is_mobile:
+			dialogue_controls.show()
+		else:
+			dialogue_controls.hide()
+			
+	# 4. Mobile Controls & UI Visibility Logic (UPDATED)
+	if DialogueManager.is_dialogue_active:
+		# Hide the joystick and menus during dialogue to keep it clean
+		if joystick_base: joystick_base.hide()
+		if settings_button: settings_button.hide()
+		
+		# --- NEW: Show checklist IF the tutorial flag is active! ---
+		if TaskManager.force_show_checklist:
+			if checklist_button: checklist_button.show()
+		else:
+			if checklist_button: checklist_button.hide()
+			
+		if is_joystick_active: _reset_joystick()
+	else:
+		# Show menus when dialogue is over
+		if settings_button: settings_button.show()
+		if checklist_button: checklist_button.show()
+		
+		# Show joystick ONLY if on mobile
+		if TaskManager.is_mobile:
+			if joystick_base: joystick_base.show()
+		else:
+			if joystick_base: joystick_base.hide()
+
+	# DEVICE CHECK FOR INTERACT BUTTON 
+	if TaskManager.is_mobile:
+		if interact_btn: interact_btn.show()
+	else:
+		if interact_btn: interact_btn.hide()
 
 func _on_settings_pressed() -> void:
 	var pause_menu_instance = PAUSE_MENU.instantiate()
@@ -74,6 +154,9 @@ func _on_settings_pressed() -> void:
 	get_tree().paused = true
 
 func _toggle_checklist() -> void:
+	# --- NEW: Tell the Map Director they clicked it! ---
+	TaskManager.checklist_tutorial_clicked.emit() 
+	
 	if checklist_instance == null:
 		checklist_instance = CHECKLIST_MENU.instantiate()
 		add_child(checklist_instance)
@@ -85,12 +168,80 @@ func _toggle_checklist() -> void:
 				checklist_instance.update_page() 
 			checklist_instance.show()
 
+# --- INPUT HANDLING & JOYSTICK LOGIC ---
+func _input(event: InputEvent) -> void:
+	if is_game_over_active:
+		if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+			_go_to_assessment()
+		elif event is InputEventScreenTouch and event.pressed:
+			_go_to_assessment()
+		return
+
+	# --- NEW: Stop the joystick from stealing inputs while paused! ---
+	if get_tree().paused:
+		return
+
+	# Don't process joystick touch if it's currently hidden!
+	if joystick_base and joystick_knob and joystick_base.visible:
+		if event is InputEventScreenTouch:
+			var touch_pos = event.position
+			
+			if event.pressed and not is_joystick_active:
+				if touch_pos.distance_to(joystick_center) < 200.0: 
+					is_joystick_active = true
+					joystick_touch_id = event.index
+					_update_joystick(touch_pos)
+					
+			elif not event.pressed and event.index == joystick_touch_id:
+				_reset_joystick()
+				
+		elif event is InputEventScreenDrag and is_joystick_active and event.index == joystick_touch_id:
+			_update_joystick(event.position)
+
+func _update_joystick(touch_pos: Vector2) -> void:
+	var offset = touch_pos - joystick_center
+	
+	if offset.length() > joystick_max_dist:
+		offset = offset.normalized() * joystick_max_dist
+		
+	joystick_knob.global_position = joystick_center + offset - (joystick_knob.size / 2.0)
+	
+	var input_vector = offset / joystick_max_dist
+	
+	_simulate_action("ui_right", input_vector.x > 0.2)
+	_simulate_action("ui_left", input_vector.x < -0.2)
+	_simulate_action("ui_down", input_vector.y > 0.2)
+	_simulate_action("ui_up", input_vector.y < -0.2)
+
+func _reset_joystick() -> void:
+	is_joystick_active = false
+	joystick_touch_id = -1
+	
+	joystick_knob.global_position = joystick_center - (joystick_knob.size / 2.0)
+	
+	_simulate_action("ui_right", false)
+	_simulate_action("ui_left", false)
+	_simulate_action("ui_down", false)
+	_simulate_action("ui_up", false)
+
+func _simulate_action(action_name: String, is_pressed: bool) -> void:
+	if is_pressed and not Input.is_action_pressed(action_name):
+		var ev = InputEventAction.new()
+		ev.action = action_name
+		ev.pressed = true
+		Input.parse_input_event(ev)
+	elif not is_pressed and Input.is_action_pressed(action_name):
+		var ev = InputEventAction.new()
+		ev.action = action_name
+		ev.pressed = false
+		Input.parse_input_event(ev)
+
 # --- GAME OVER / TIMEOUT LOGIC ---
 func _on_time_ran_out() -> void:
 	if TaskManager.are_all_tasks_complete():
-		_go_to_assessment() # They survived and finished the tasks!
+		_go_to_assessment() 
 	else:
-		_trigger_actual_game_over() # They ran out of time before finishing!
+		_trigger_actual_game_over() 
 
 func _trigger_actual_game_over() -> void:
 	if is_game_over_active:
@@ -98,7 +249,6 @@ func _trigger_actual_game_over() -> void:
 		
 	is_game_over_active = true
 	get_tree().paused = true 
-	
 	TaskManager.is_timer_running = false 
 	
 	var game_over_instance = GAME_OVER_SCREEN.instantiate()
@@ -108,30 +258,16 @@ func _trigger_actual_game_over() -> void:
 	game_over_timer.wait_time = 8.0
 	game_over_timer.one_shot = true
 	game_over_timer.process_mode = Node.PROCESS_MODE_ALWAYS 
-	
 	add_child(game_over_timer)
 	game_over_timer.timeout.connect(_go_to_assessment)
 	game_over_timer.start()
-
-func _input(event: InputEvent) -> void:
-	if is_game_over_active:
-		if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-			_go_to_assessment()
-		elif event is InputEventScreenTouch and event.pressed:
-			_go_to_assessment()
 
 func _go_to_assessment() -> void:
 	is_game_over_active = false
 	get_tree().paused = false 
 	get_tree().change_scene_to_file(ASSESSMENT_SCREEN)
 
-# --- SUCCESS LOGIC (THIS WAS MISSING!) ---
 func _trigger_game_success() -> void:
-	# Stop the clock to lock in their final time
 	TaskManager.is_timer_running = false
-	
-	# Ensure the tree is unpaused so the assessment screen works properly
 	get_tree().paused = false 
-	
-	# Bypass the Game Over screen entirely
 	get_tree().change_scene_to_file(ASSESSMENT_SCREEN)

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://iuvrlepm1vll"
+path="res://.godot/imported/music 2(sounds like kahoot).mp3-1153b3dc9977ad86b8c35643568f8b5a.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds&music/music 2(sounds like kahoot).mp3"
+dest_files=["res://.godot/imported/music 2(sounds like kahoot).mp3-1153b3dc9977ad86b8c35643568f8b5a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

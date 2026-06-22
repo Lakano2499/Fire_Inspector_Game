@@ -1,0 +1,182 @@
+[gd_scene format=3 uid="uid://co140via7j14g"]
+
+[ext_resource type="Texture2D" uid="uid://vgwhp22ud5bq" path="res://assets/static/Modern_UI_Style_1_48x48.png" id="1_2bkfx"]
+[ext_resource type="Script" uid="uid://irr1rgnx43xh" path="res://scripts/main_menu.gd" id="1_65jss"]
+[ext_resource type="FontFile" uid="uid://ca8188ftvgnay" path="res://assets/fonts/PixelifySans-Regular.ttf" id="2_s7df1"]
+[ext_resource type="Texture2D" uid="uid://cghvatbec1irs" path="res://assets/animated buttons/Title Screen/play_button/Playbutton.png" id="3_hvj3a"]
+[ext_resource type="Script" uid="uid://shmm4srtlkh" path="res://scripts/animated_button.gd" id="4_6orxr"]
+[ext_resource type="Texture2D" uid="uid://cqebctdh11g5l" path="res://assets/animated buttons/Title Screen/play_button/play_button_1.tres" id="5_65jss"]
+[ext_resource type="Texture2D" uid="uid://b54fjsw3y5ged" path="res://assets/animated buttons/Title Screen/play_button/play_button_2.tres" id="6_aci3y"]
+[ext_resource type="Texture2D" uid="uid://de13b43odckt6" path="res://assets/animated buttons/Title Screen/play_button/play_button_3.tres" id="7_iva1m"]
+[ext_resource type="Texture2D" uid="uid://d2ki5m8v3d4mv" path="res://assets/static/Modern_UI_Style_2_48x48.png" id="8_6orxr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7df1"]
+atlas = ExtResource("1_2bkfx")
+region = Rect2(183, 903, 66, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7niqp"]
+atlas = ExtResource("1_2bkfx")
+region = Rect2(183, 624, 66, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xig4h"]
+atlas = ExtResource("3_hvj3a")
+region = Rect2(8, 18, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65jss"]
+atlas = ExtResource("8_6orxr")
+region = Rect2(1167, 972, 18, 27)
+
+[node name="MainMenu" type="Control" unique_id=1822542693]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_65jss")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=534689360]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_s7df1")
+patch_margin_left = 18
+patch_margin_top = 18
+patch_margin_right = 18
+patch_margin_bottom = 18
+
+[node name="Node" type="Node" parent="." unique_id=1326320680]
+
+[node name="TutorialMap" type="NinePatchRect" parent="Node" unique_id=773156762]
+offset_left = 27.0
+offset_top = 47.0
+offset_right = 67.41844
+offset_bottom = 81.193085
+scale = Vector2(4.4039307, 6.5510325)
+texture = SubResource("AtlasTexture_7niqp")
+
+[node name="Label" type="Label" parent="Node/TutorialMap" unique_id=93979415]
+layout_mode = 0
+offset_top = 5.3426685
+offset_right = 40.41844
+offset_bottom = 16.405169
+theme_override_fonts/font = ExtResource("2_s7df1")
+theme_override_font_sizes/font_size = 9
+text = "Tutorial"
+horizontal_alignment = 1
+
+[node name="PlayButton" type="TextureButton" parent="Node/TutorialMap" unique_id=1362042813]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 0
+offset_left = 7.039167
+offset_top = 26.255404
+offset_right = 151.03917
+offset_bottom = 90.2554
+scale = Vector2(0.18014729, 0.11543525)
+size_flags_horizontal = 4
+texture_normal = SubResource("AtlasTexture_xig4h")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("4_6orxr")
+frame_1 = ExtResource("5_65jss")
+frame_2 = ExtResource("6_aci3y")
+frame_3 = ExtResource("7_iva1m")
+
+[node name="Map1" type="NinePatchRect" parent="Node" unique_id=221227109]
+offset_left = 229.0
+offset_top = 47.0
+offset_right = 269.41843
+offset_bottom = 81.193085
+scale = Vector2(4.4039307, 6.5510325)
+texture = SubResource("AtlasTexture_7niqp")
+
+[node name="Label" type="Label" parent="Node/Map1" unique_id=995710006]
+layout_mode = 0
+offset_top = 5.3426685
+offset_right = 40.41844
+offset_bottom = 16.405169
+theme_override_fonts/font = ExtResource("2_s7df1")
+theme_override_font_sizes/font_size = 9
+text = "Map 1"
+horizontal_alignment = 1
+
+[node name="PlayButton" type="TextureButton" parent="Node/Map1" unique_id=155373691]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 0
+offset_left = 7.039167
+offset_top = 26.255404
+offset_right = 151.03917
+offset_bottom = 90.2554
+scale = Vector2(0.18014729, 0.11543525)
+size_flags_horizontal = 4
+texture_normal = SubResource("AtlasTexture_xig4h")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("4_6orxr")
+frame_1 = ExtResource("5_65jss")
+frame_2 = ExtResource("6_aci3y")
+frame_3 = ExtResource("7_iva1m")
+
+[node name="Lock" type="ColorRect" parent="Node/Map1" unique_id=145378125]
+layout_mode = 0
+offset_right = 40.41844
+offset_bottom = 34.193085
+color = Color(0, 0, 0, 0.47058824)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Node/Map1/Lock" unique_id=843437028]
+layout_mode = 0
+offset_left = 16.349026
+offset_top = 16.333302
+offset_right = 23.842335
+offset_bottom = 21.218029
+texture = SubResource("AtlasTexture_65jss")
+
+[node name="ComingSoon" type="NinePatchRect" parent="Node" unique_id=1450978789]
+offset_left = 428.0
+offset_top = 47.0
+offset_right = 468.41843
+offset_bottom = 81.193085
+scale = Vector2(4.4039307, 6.5510325)
+texture = SubResource("AtlasTexture_7niqp")
+
+[node name="Label" type="Label" parent="Node/ComingSoon" unique_id=451390036]
+layout_mode = 0
+offset_top = 1.8317714
+offset_right = 40.41844
+offset_bottom = 26.956772
+theme_override_fonts/font = ExtResource("2_s7df1")
+theme_override_font_sizes/font_size = 9
+text = "Coming
+soon"
+horizontal_alignment = 1
+
+[node name="Lock" type="ColorRect" parent="Node/ComingSoon" unique_id=327014855]
+layout_mode = 0
+offset_right = 40.41844
+offset_bottom = 34.193085
+color = Color(0, 0, 0, 0.47058824)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Node/ComingSoon/Lock" unique_id=853979901]
+layout_mode = 0
+offset_left = 16.349026
+offset_top = 16.333302
+offset_right = 23.842335
+offset_bottom = 21.218029
+texture = SubResource("AtlasTexture_65jss")
+
+[node name="Button" type="Button" parent="Node" unique_id=1623024026]
+offset_left = 520.0
+offset_top = 297.0
+offset_right = 616.0
+offset_bottom = 330.0
+text = "Back"
+
+[node name="CharacterSelect" type="Button" parent="Node" unique_id=2061895963]
+offset_left = 27.0
+offset_top = 297.0
+offset_right = 123.0
+offset_bottom = 330.0
+text = "Character Select"

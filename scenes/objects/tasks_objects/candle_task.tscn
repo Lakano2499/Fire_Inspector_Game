@@ -56,7 +56,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rqlqk"]
-size = Vector2(10, 18)
+size = Vector2(11.5, 22.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2r3gm"]
 radius = 61.008198
@@ -88,6 +88,7 @@ indicator = NodePath("../interact_indicator")
 shape = SubResource("CircleShape2D_2r3gm")
 
 [node name="area_seen" type="Area2D" parent="." unique_id=433111429 node_paths=PackedStringArray("highlight_node")]
+visible = false
 script = ExtResource("3_8275n")
 highlight_node = NodePath("../AnimatedSprite2D")
 

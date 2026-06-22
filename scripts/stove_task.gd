@@ -11,6 +11,10 @@ var is_completed = false
 var has_poured_water = false
 var fail_timer: Timer
 
+# --- BEATING MARKER VARIABLES ---
+var base_marker_scale: Vector2 = Vector2.ONE
+var pulse_time: float = 0.0
+
 func _ready() -> void:
 	# 1. Start safely at default state
 	anim_sprite.play("default_state")
@@ -18,6 +22,7 @@ func _ready() -> void:
 	# 2. Hide marker and disable all interactions while waiting
 	if alert_marker:
 		alert_marker.hide()
+		base_marker_scale = alert_marker.scale
 	_set_interactions_enabled(false)
 	
 	fail_timer = Timer.new()
@@ -32,16 +37,30 @@ func _ready() -> void:
 	
 	# 4. Start the hidden timer! 
 	# CHANGE THIS TO 120.0 LATER FOR THE 2-MINUTE MARK
-	var timer = get_tree().create_timer(5.0) 
+	var timer = get_tree().create_timer(60.0) 
 	timer.timeout.connect(_start_fire)
 	
-func _process(_delta: float) -> void:
-	# Constantly tell the global manager how much time is left!
+func _process(delta: float) -> void:
+	# 1. Constantly tell the global manager how much time is left!
 	if fail_timer and not fail_timer.is_stopped():
 		TaskManager.stove_time_left = fail_timer.time_left
 		TaskManager.stove_wait_time = fail_timer.wait_time
 	else:
 		TaskManager.stove_time_left = 0.0
+		
+	# 2. THE HEARTBEAT LOGIC
+	if alert_marker and alert_marker.visible and fail_timer and fail_timer.time_left > 0:
+		var time_ratio = fail_timer.time_left / fail_timer.wait_time
+		var current_speed = lerp(30.0, 6.0, time_ratio)
+		
+		pulse_time += delta * current_speed
+		var scale_pop = abs(sin(pulse_time)) * 0.4
+		
+		var safe_scale = base_marker_scale
+		if safe_scale == Vector2.ZERO:
+			safe_scale = Vector2(1.0, 1.0)
+			
+		alert_marker.scale = safe_scale * (1.0 + scale_pop)
 
 func _start_fire() -> void:
 	# The timer popped! Start the initial fire animation
@@ -61,7 +80,6 @@ func _on_fail_timeout() -> void:
 
 func _on_animation_finished() -> void:
 	# Godot checks this function every time ANY animation finishes.
-	
 	if anim_sprite.animation == "burning_pan":
 		# The initial spark finished, now loop the fire and let the player interact!
 		anim_sprite.play("burning_pan_looping")
@@ -104,9 +122,14 @@ func _on_interacted() -> void:
 		
 	elif choice == 1: # "Pour Water"
 		has_poured_water = true
+		
+		# --- NEW: Tell the Brain about the mistake! ---
+		TaskManager.poured_water_on_grease = true 
+		
 		_set_interactions_enabled(false) # Disable clicks while animating
 		anim_sprite.play("burning_pan_pour_water")
 
+# A quick helper function so we don't have to copy-paste this 4 times
 func _set_interactions_enabled(enabled: bool) -> void:
 	# Note: using set_deferred prevents physics glitching if disabled mid-collision
 	interact_area.set_deferred("monitoring", enabled)
@@ -121,6 +144,9 @@ func _mark_as_completed() -> void:
 	# Stop the fail timer, they saved the house!
 	if fail_timer:
 		fail_timer.stop() 
+		
+	if alert_marker:
+		alert_marker.scale = base_marker_scale
 		
 	# 1. TELL THE MANAGER THE STOVE IS SAFE FIRST!
 	TaskManager.stove_task_completed = true

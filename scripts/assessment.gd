@@ -31,8 +31,9 @@ func _show_phase_1_scores() -> void:
 		stove_score = 0
 		final_text += "Grease Fire Contained: [color=red]FAILED (House Burned Down!)[/color] -> [b]0 / 10 Points[/b]\n\n"
 	elif TaskManager.poured_water_on_grease:
-		stove_score = -5 
-		final_text += "Grease Fire Contained: [color=orange]POOR (Poured Water!)[/color] -> [b]-5 / 10 Points[/b]\n\n"
+		# Changed from -5 to 5. They get half credit for eventually fixing it!
+		stove_score = 5 
+		final_text += "Grease Fire Contained: [color=orange]POOR (Poured Water First!)[/color] -> [b]5 / 10 Points[/b]\n\n"
 	elif TaskManager.stove_task_completed: # <--- CHECKING IF ACTUALLY DONE
 		stove_score = 10
 		final_text += "Grease Fire Contained: [color=green]PERFECT (Used Lid)[/color] -> [b]10 / 10 Points[/b]\n\n"

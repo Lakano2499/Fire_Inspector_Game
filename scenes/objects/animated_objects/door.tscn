@@ -73,10 +73,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aarh8"]
-size = Vector2(49, 70)
+size = Vector2(49, 73)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5jeh1"]
 size = Vector2(72, 128)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_1th3y"]
+polygon = PackedVector2Array(-42.264862, -0.43912888, 6.735138, -0.43912888, 6.735138, 2.5608711, -42.264862, 2.5608711)
 
 [node name="door" type="StaticBody2D" unique_id=1290097924]
 script = ExtResource("1_g8l8a")
@@ -85,10 +88,12 @@ script = ExtResource("1_g8l8a")
 position = Vector2(4.25, 12.020986)
 scale = Vector2(0.90972227, 0.84751374)
 sprite_frames = SubResource("SpriteFrames_ho7vk")
-animation = &"open_door"
+animation = &"close_door"
+frame = 3
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=387623897]
-position = Vector2(9.5, 5)
+position = Vector2(9.5, 3.5)
 shape = SubResource("RectangleShape2D_aarh8")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=281159645]
@@ -96,3 +101,7 @@ shape = SubResource("RectangleShape2D_aarh8")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=185781518]
 position = Vector2(10, -3)
 shape = SubResource("RectangleShape2D_5jeh1")
+
+[node name="LightBlocker" type="LightOccluder2D" parent="." unique_id=127902519]
+position = Vector2(27.264862, -23.560871)
+occluder = SubResource("OccluderPolygon2D_1th3y")

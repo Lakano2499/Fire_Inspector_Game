@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b2i4vb2qhmoq0"]
+
+[ext_resource type="AudioStream" path="res://assets/sounds&music/music 4.mp3" id="1_1"]
+[ext_resource type="Script" path="res://scripts/music_manager.gd" id="2_2"]
+
+[node name="MusicManager" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_1")
+autoplay = true
+bus = &"Music"
+script = ExtResource("2_2")

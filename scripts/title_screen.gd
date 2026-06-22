@@ -1,33 +1,30 @@
 extends Control
 
+# --- PRELOADS ---
+# Make sure this path matches exactly where your settings scene is saved!
+const SETTINGS_MENU = preload("res://scenes/System UI/settings.tscn")
 
-# Called when the node enters the scene tree for the first time.
+@onready var play_button = $ButtonContainer/PlayButton
+@onready var settings_button = $ButtonContainer/SettingsButton
+@onready var quit_button = $ButtonContainer/QuitButton
+
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
+	# Connect the settings button to open the menu
+	if settings_button:
+		settings_button.pressed.connect(_on_settings_button_pressed)
 
 func _on_play_button_pressed() -> void:
-	# 1. Stop the player from double-clicking the button while it fades
-	$ButtonContainer/PlayButton.disabled = true
-	
-	# 2. Create a smooth fade-out transition
+	if play_button:
+		play_button.disabled = true
 	var tween = create_tween()
-	
-	# Fade out the entire TitleScreen (self) over 0.5 seconds
 	tween.tween_property(self, "modulate:a", 0.0, 0.3).set_ease(Tween.EASE_OUT)
-	
-	# 3. Wait for the animation to completely finish...
 	await tween.finished
-	
-	# 4. ...THEN change the scene!
-	get_tree().change_scene_to_file("res://scenes/System UI/loading_screen.tscn")
+	get_tree().change_scene_to_file("res://scenes/System UI/main_menu.tscn")
 
+# --- NEW: Open Settings Panel ---
+func _on_settings_button_pressed() -> void:
+	var settings_instance = SETTINGS_MENU.instantiate()
+	add_child(settings_instance)
 
 func _on_quit_button_pressed() -> void:
-	# Closes the game
 	get_tree().quit()

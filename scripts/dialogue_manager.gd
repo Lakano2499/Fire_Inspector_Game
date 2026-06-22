@@ -16,28 +16,36 @@ signal choice_selected(choice_index)
 var is_typing = false
 var current_choice_index = 0
 var active_choices = []
-var active_disabled_choices = [] # NEW: Stores which options are locked
+var active_disabled_choices = [] 
+var is_dialogue_active: bool = false
+var is_awaiting_choice: bool = false # NEW: Tracks when choices are actually visible
 
 func _ready():
-	# Hide everything when the game first loads
 	hide_dialogue()
 
 func hide_dialogue():
 	main_panel.hide()
 	name_box.hide()
 	choice_box.hide()
-	
-# NEW: Added 'disabled_choices' array parameter
+	is_dialogue_active = false
+	is_awaiting_choice = false # Reset choice state
+	TaskManager.player_can_move = true
+
 func show_dialogue(speaker_name: String, text: String, choices: Array = [], disabled_choices: Array = []):
+	is_dialogue_active = true
+	is_awaiting_choice = false # Choices aren't ready yet!
+	TaskManager.player_can_move = false
+	
+	
 	# 1. Setup the text
 	name_label.text = speaker_name
 	dialogue_text.text = text
-	dialogue_text.visible_ratio = 0.0 # Make text invisible for typewriter effect
+	dialogue_text.visible_ratio = 0.0 
 	
 	# 2. Show the main boxes
 	main_panel.show()
 	name_box.show()
-	choice_box.hide() # Keep choices hidden until typing finishes
+	choice_box.hide() 
 	
 	# 3. Animate the Typewriter effect
 	is_typing = true
@@ -52,7 +60,6 @@ func show_dialogue(speaker_name: String, text: String, choices: Array = [], disa
 	
 	if choices.size() > 0:
 		choice_1.text = choices[0]
-		# Visually fade the text if it is disabled
 		if 0 in disabled_choices:
 			choice_1.modulate.a = 0.5
 		else:
@@ -61,7 +68,6 @@ func show_dialogue(speaker_name: String, text: String, choices: Array = [], disa
 		if choices.size() > 1:
 			choice_2.text = choices[1]
 			choice_2.show()
-			# Visually fade the second choice if disabled
 			if 1 in disabled_choices:
 				choice_2.modulate.a = 0.5
 			else:
@@ -75,39 +81,37 @@ func _on_typing_finished():
 		# Show choices
 		choice_box.show()
 		
+		# --- NEW: Tell the UI that choices are now on screen! ---
+		is_awaiting_choice = true 
+		
 		# Set initial pointer to the first available choice
 		current_choice_index = 0
-		# If choice 0 is locked, automatically jump the pointer down to choice 1
 		if 0 in active_disabled_choices and active_choices.size() > 1:
 			current_choice_index = 1
 			
 		update_pointer()
 
 func update_pointer():
-	# Snap the pointer's Y position to match the currently selected text
 	if current_choice_index == 0:
 		choice_pointer.global_position.y = choice_1.global_position.y
 	elif current_choice_index == 1:
 		choice_pointer.global_position.y = choice_2.global_position.y
 
 func _input(event):
-	# Only allow input if the choice box is actually visible
 	if not choice_box.visible:
 		return
 		
-	# Move pointer up and down
 	if event.is_action_pressed("ui_down") or event.is_action_pressed("ui_up"):
-		# Calculate where the pointer wants to go
 		var target_index = 1 - current_choice_index 
 		
-		# Only move the pointer there if that option is NOT in the disabled list
 		if not target_index in active_disabled_choices:
 			current_choice_index = target_index 
 			update_pointer()
 		
-	# Confirm choice
-	elif event.is_action_pressed("ui_accept"):
-		# Final safety check so they can't force-select a locked choice
+	elif event.is_action_pressed("interact"):
 		if not current_choice_index in active_disabled_choices:
-			hide_dialogue() # Close the dialogue box for now
-			choice_selected.emit(current_choice_index) # Tell the game what we picked!
+			# --- NEW: Tell Godot to stop passing this click to the door! ---
+			get_viewport().set_input_as_handled() 
+			
+			hide_dialogue() 
+			choice_selected.emit(current_choice_index)

@@ -3,18 +3,26 @@ extends Node
 signal tasks_updated
 signal time_ran_out 
 signal game_won_automatically 
-signal game_over_triggered # (Just making sure this is declared!)
+signal game_over_triggered
+signal checklist_tutorial_clicked
 
 # --- TIMER VARIABLES ---
 var time_elapsed: float = 0.0 
-var time_remaining: float = 60.0 
+var time_remaining: float = 120.0 
 var is_timer_running: bool = true
+var is_mobile: bool = true # Defaults to true, but the tutorial will change it!
+var force_show_checklist: bool = false
+var tutorial_pointer_active: bool = false
+var is_map1_unlocked: bool = false
+# Defaults to Berong when the game first boots up
+var selected_character_path: String = "res://characters/berong.tscn"
+var selected_character: String = "berong"
 
 # --- ASSESSMENT TRACKERS ---
 var poured_water_on_grease: bool = false
 var house_burned_down: bool = false
 var stove_task_completed: bool = false 
-
+	
 # --- NEW: DANGER TRACKERS ---
 var stove_task_active: bool = false
 var stove_time_left: float = 0.0
@@ -39,7 +47,7 @@ func _ready() -> void:
 # --- RESET GAME STATE ---
 func reset_game_state() -> void:
 	time_elapsed = 0.0
-	time_remaining = 60.0 # Reset to 1 minute!
+	time_remaining = 120.0 # Reset to 1 minute!
 	is_timer_running = true
 	
 	poured_water_on_grease = false
@@ -64,7 +72,7 @@ func _process(delta: float) -> void:
 			is_timer_running = false
 			time_ran_out.emit()
 			
-# --- AUTO-WIN LOGIC ---
+# --- -WIN LOGIC ---
 func check_for_auto_win() -> void:
 	# 1. Check if all standard checklist tasks are maxed out
 	for task in master_task_list:

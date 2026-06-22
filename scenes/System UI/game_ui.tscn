@@ -1,21 +1,14 @@
 [gd_scene format=3 uid="uid://btc2840xgci73"]
 
 [ext_resource type="Script" uid="uid://dt3jswvoes4md" path="res://scripts/game_ui.gd" id="1_2dskw"]
-[ext_resource type="Texture2D" uid="uid://vgwhp22ud5bq" path="res://assets/static/Modern_UI_Style_1_48x48.png" id="1_mbjom"]
 [ext_resource type="Texture2D" uid="uid://d2ki5m8v3d4mv" path="res://assets/static/Modern_UI_Style_2_48x48.png" id="2_2dskw"]
 [ext_resource type="Texture2D" uid="uid://dot7qg6sv3lp2" path="res://assets/static/checklist_ui.png" id="3_2dskw"]
+[ext_resource type="PackedScene" uid="uid://cqmpr0fj6kww6" path="res://scenes/System UI/tutorial_pointer.tscn" id="4_agc66"]
+[ext_resource type="Script" uid="uid://shmm4srtlkh" path="res://scripts/animated_button.gd" id="4_f5txn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f5txn"]
 atlas = ExtResource("2_2dskw")
 region = Rect2(480, 555, 45, 45)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_agc66"]
-atlas = ExtResource("1_mbjom")
-region = Rect2(390, 0, 36, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mmnip"]
-atlas = ExtResource("1_mbjom")
-region = Rect2(531, 54, 42, 36)
 
 [sub_resource type="Gradient" id="Gradient_f5txn"]
 offsets = PackedFloat32Array(0, 0.09266409, 0.8648649, 0.98841697, 0.992278, 0.996139, 1)
@@ -27,7 +20,52 @@ fill = 2
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 1)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_agc66"]
+atlas = ExtResource("2_2dskw")
+region = Rect2(963, 1494, 40, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmnip"]
+atlas = ExtResource("2_2dskw")
+region = Rect2(963, 1494, 39, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbm4o"]
+atlas = ExtResource("2_2dskw")
+region = Rect2(1920, 813, 48, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfrxj"]
+atlas = ExtResource("2_2dskw")
+region = Rect2(1920, 621, 48, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjbnf"]
+atlas = ExtResource("2_2dskw")
+region = Rect2(1920, 621, 48, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4dfs"]
+atlas = ExtResource("2_2dskw")
+region = Rect2(1968, 621, 48, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odxgw"]
+atlas = ExtResource("2_2dskw")
+region = Rect2(2016, 621, 48, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l87eq"]
+atlas = ExtResource("2_2dskw")
+region = Rect2(2064, 621, 48, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gaoog"]
+atlas = ExtResource("2_2dskw")
+region = Rect2(2064, 621, 48, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vct5q"]
+atlas = ExtResource("2_2dskw")
+region = Rect2(2112, 621, 48, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gxdx"]
+atlas = ExtResource("2_2dskw")
+region = Rect2(2160, 621, 48, 51)
+
 [node name="Game UI" type="CanvasLayer" unique_id=1116611700]
+process_mode = 3
 script = ExtResource("1_2dskw")
 
 [node name="Settings" type="TextureButton" parent="." unique_id=1360763848]
@@ -47,23 +85,9 @@ size_flags_horizontal = 6
 size_flags_vertical = 8
 texture_normal = ExtResource("3_2dskw")
 
-[node name="GameOverTest" type="TextureButton" parent="." unique_id=868526095]
-visible = false
-offset_left = 610.0
-offset_top = 330.0
-offset_right = 650.0
-offset_bottom = 378.0
-scale = Vector2(0.63471305, 0.5697703)
-texture_normal = SubResource("AtlasTexture_agc66")
-
-[node name="GameFinishTest" type="TextureButton" parent="." unique_id=690846046]
-visible = false
-offset_left = 608.00006
-offset_top = 297.00003
-offset_right = 650.00006
-offset_bottom = 333.00003
-scale = Vector2(0.6230033, 0.7185955)
-texture_normal = SubResource("AtlasTexture_mmnip")
+[node name="interact_indicator" parent="CheckList" unique_id=25875440 instance=ExtResource("4_agc66")]
+position = Vector2(-24.182262, 51.847176)
+rotation = -2.0943952
 
 [node name="TimerLabel" type="Label" parent="." unique_id=1350427167]
 offset_left = 290.0
@@ -83,3 +107,71 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("GradientTexture2D_agc66")
+
+[node name="MobileControls" type="Node" parent="." unique_id=1233248315]
+
+[node name="JoystickBase" type="TextureRect" parent="MobileControls" unique_id=1955957988]
+modulate = Color(0.7735171, 0.7557719, 0.7322035, 0.5372549)
+offset_left = 32.0
+offset_top = 213.0
+offset_right = 150.0
+offset_bottom = 336.0
+texture = SubResource("AtlasTexture_agc66")
+
+[node name="Knob" type="TextureRect" parent="MobileControls/JoystickBase" unique_id=1942599956]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.5
+offset_top = -34.5
+offset_right = 35.5
+offset_bottom = 34.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_mmnip")
+
+[node name="Node" type="Node" parent="MobileControls" unique_id=2073629812]
+
+[node name="InteractButton" type="TextureButton" parent="MobileControls/Node" unique_id=2067813230]
+modulate = Color(1, 1, 1, 0.4745098)
+offset_left = 535.00006
+offset_top = 265.0
+offset_right = 535.00006
+offset_bottom = 265.0
+scale = Vector2(1.6458331, 1.4705887)
+texture_normal = SubResource("AtlasTexture_dbm4o")
+
+[node name="ForDialogueChoiceBox" type="Control" parent="MobileControls/Node" unique_id=457631003]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="up" type="TextureButton" parent="MobileControls/Node/ForDialogueChoiceBox" unique_id=1281974178]
+modulate = Color(1, 1, 1, 0.4745098)
+layout_mode = 0
+offset_left = 559.0
+offset_top = 201.99998
+offset_right = 607.0
+offset_bottom = 252.99998
+scale = Vector2(1.0833321, 0.9607842)
+texture_normal = SubResource("AtlasTexture_qfrxj")
+script = ExtResource("4_f5txn")
+frame_1 = SubResource("AtlasTexture_gjbnf")
+frame_2 = SubResource("AtlasTexture_j4dfs")
+frame_3 = SubResource("AtlasTexture_odxgw")
+
+[node name="down" type="TextureButton" parent="MobileControls/Node/ForDialogueChoiceBox" unique_id=1788034045]
+modulate = Color(1, 1, 1, 0.4745098)
+layout_mode = 0
+offset_left = 559.0
+offset_top = 146.99998
+offset_right = 607.0
+offset_bottom = 197.99998
+scale = Vector2(1.0833321, 0.9607842)
+texture_normal = SubResource("AtlasTexture_l87eq")
+script = ExtResource("4_f5txn")
+frame_1 = SubResource("AtlasTexture_gaoog")
+frame_2 = SubResource("AtlasTexture_vct5q")
+frame_3 = SubResource("AtlasTexture_2gxdx")
