@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://mv0gl8jam50w" path="res://assets/decorations/animated/door_type1.png" id="1_35ahc"]
 [ext_resource type="Script" uid="uid://spr8owsnyt3t" path="res://scripts/door.gd" id="1_d8dpx"]
+[ext_resource type="AudioStream" uid="uid://dukv73ji1kenq" path="res://assets/sounds&music/opening_door.mp3" id="3_o6g3o"]
+[ext_resource type="AudioStream" uid="uid://odh0vxx1tje6" path="res://assets/sounds&music/close_door.mp3" id="4_pd0np"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d8dpx"]
 atlas = ExtResource("1_35ahc")
@@ -104,3 +106,11 @@ shape = SubResource("RectangleShape2D_oqcwk")
 [node name="LightBlocker" type="LightOccluder2D" parent="." unique_id=1226104481]
 position = Vector2(27.264862, -23.560871)
 occluder = SubResource("OccluderPolygon2D_d8dpx")
+
+[node name="OpenSound" type="AudioStreamPlayer2D" parent="." unique_id=1450021515]
+stream = ExtResource("3_o6g3o")
+bus = &"SFX"
+
+[node name="CloseSound" type="AudioStreamPlayer2D" parent="." unique_id=1022584301]
+stream = ExtResource("4_pd0np")
+bus = &"SFX"

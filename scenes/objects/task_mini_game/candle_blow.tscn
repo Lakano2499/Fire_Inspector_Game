@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://hpv1l6mqlo1g" path="res://scripts/candle_blow.gd" id="1_ewtkl"]
 [ext_resource type="Texture2D" uid="uid://dhyxoj5iwqqmu" path="res://assets/tasks/Candleeresized.png" id="1_ocp16"]
+[ext_resource type="AudioStream" uid="uid://yo0t1uiv0vy4" path="res://assets/sounds&music/air blow.mp3" id="2_blow_snd"]
+[ext_resource type="PackedScene" uid="uid://bwfi7167gpael" path="res://scenes/System UI/pointing.tscn" id="4_c5q6b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ewtkl"]
 atlas = ExtResource("1_ocp16")
@@ -88,3 +90,10 @@ offset_top = 13.0
 offset_right = 379.0
 offset_bottom = 64.0
 text = "   Task Successful"
+
+[node name="BlowSound" type="AudioStreamPlayer" parent="." unique_id=84730444]
+stream = ExtResource("2_blow_snd")
+bus = &"SFX"
+
+[node name="pointing" parent="." unique_id=60246836 instance=ExtResource("4_c5q6b")]
+position = Vector2(324, 139)

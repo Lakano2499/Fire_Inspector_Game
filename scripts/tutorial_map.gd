@@ -7,10 +7,18 @@ var is_emergency_active: bool = false
 var is_emergency_done: bool = false
 
 func _ready() -> void:
+	# 1. Reset everything first (this wipes out any old data)
+	TaskManager.reset_game_state()
+	
+	# 2. OVERWRITE the main game tasks with the tutorial tasks
 	TaskManager.master_task_list = ["Task 1", "Task 2", "Task 3"]
 	TaskManager.task_max = {"Task 1": 1, "Task 2": 1, "Task 3": 1}
 	
-	TaskManager.reset_game_state()
+	# 3. Rebuild the progress dictionary so the checklist doesn't crash
+	TaskManager.task_progress.clear()
+	for task in TaskManager.master_task_list:
+		TaskManager.task_progress[task] = 0
+		
 	TaskManager.is_timer_running = false
 	
 	# Start the interactive tutorial sequence!
@@ -37,24 +45,20 @@ func _run_intro_sequence() -> void:
 		DialogueManager.show_dialogue("System", "Computer selected. Press W,A,S,D to move, and 'F' to interact.", ["Continue"])
 		await DialogueManager.choice_selected
 		
-	# --- NEW STEP: Introduce the Checklist ---
+	# --- Introduce the Checklist ---
 	TaskManager.force_show_checklist = true 
-	TaskManager.tutorial_pointer_active = true # Turn on the pointing arrow!
+	TaskManager.tutorial_pointer_active = true 
 	
-	# Notice the empty array [] at the end. This hides the choices so they CANNOT continue!
 	DialogueManager.show_dialogue("System", "Tap the clipboard icon with the arrow pointing to it to open your Checklist.", [])
 	
-	# Pause the script forever UNTIL the UI broadcasts that the checklist was clicked
 	await TaskManager.checklist_tutorial_clicked
 	
-	# They clicked it! Turn off the pointer immediately.
 	TaskManager.tutorial_pointer_active = false 
 	
-	# NOW we show the continue button!
 	DialogueManager.show_dialogue("System", "Great! You can check this anytime to see your required tasks.", ["Got it"])
 	await DialogueManager.choice_selected
 	
-	TaskManager.force_show_checklist = false # Return UI to normal dialogue mode
+	TaskManager.force_show_checklist = false 
 		
 	# Step 4: Tell them the objective
 	DialogueManager.show_dialogue("System", "To pass this tutorial, find all the highlighted objects in this room and inspect them.", ["Start"])
@@ -93,13 +97,9 @@ func check_tutorial_complete() -> void:
 	if basic_tasks_completed == 3 and is_emergency_done:
 		get_tree().paused = true
 		
-		# Updated Dialogue text
 		DialogueManager.show_dialogue("System", "Tutorial Complete! You unlocked Map 1. Returning to Main Menu.", ["Continue"])
 		await DialogueManager.choice_selected
 		get_tree().paused = false
 		
-		# --- NEW: Unlock Map 1! ---
 		TaskManager.is_map1_unlocked = true
-		
-		# --- CHANGED: Go to Main Menu instead of the main game ---
 		get_tree().change_scene_to_file("res://scenes/System UI/main_menu.tscn")

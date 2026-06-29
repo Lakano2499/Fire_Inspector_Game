@@ -44,7 +44,9 @@ script = ExtResource("2_cj242")
 
 [node name="DarkOverlay" type="ColorRect" parent="." unique_id=2064387100]
 process_mode = 3
-anchors_preset = 15
+anchors_preset = -1
+anchor_left = -0.0046875
+anchor_top = -0.0027777778
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 3.0
@@ -54,6 +56,7 @@ offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.47058824)
+metadata/_edit_use_anchors_ = true
 
 [node name="MainPanel" type="NinePatchRect" parent="." unique_id=1848154715]
 offset_left = 148.0
@@ -66,6 +69,7 @@ patch_margin_left = 14
 patch_margin_top = 16
 patch_margin_right = 16
 patch_margin_bottom = 16
+metadata/_edit_use_anchors_ = true
 
 [node name="Box2" type="NinePatchRect" parent="MainPanel" unique_id=1512736864]
 layout_mode = 0
@@ -79,6 +83,7 @@ patch_margin_left = 16
 patch_margin_top = 16
 patch_margin_right = 16
 patch_margin_bottom = 16
+metadata/_edit_use_anchors_ = true
 
 [node name="sfx icon" type="NinePatchRect" parent="MainPanel/Box2" unique_id=1306418902]
 layout_mode = 0
@@ -93,6 +98,7 @@ patch_margin_left = 17
 patch_margin_top = 16
 patch_margin_right = 16
 patch_margin_bottom = 16
+metadata/_edit_use_anchors_ = true
 
 [node name="sfx_effects_slider" type="HSlider" parent="MainPanel/Box2" unique_id=2064646456]
 layout_mode = 0
@@ -108,6 +114,7 @@ theme_override_styles/grabber_area = SubResource("StyleBoxFlat_vuxq0")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_ckfno")
 min_value = 0.01
 value = 0.01
+metadata/_edit_use_anchors_ = true
 
 [node name="music icon" type="NinePatchRect" parent="MainPanel/Box2" unique_id=222483756]
 layout_mode = 0
@@ -118,6 +125,7 @@ offset_bottom = 102.0
 scale = Vector2(0.5391904, 0.50959015)
 texture = ExtResource("2_40nua")
 region_rect = Rect2(1017, 57, 30, 30)
+metadata/_edit_use_anchors_ = true
 
 [node name="music_slider" type="HSlider" parent="MainPanel/Box2" unique_id=1446225299]
 layout_mode = 0
@@ -133,6 +141,7 @@ theme_override_styles/grabber_area = SubResource("StyleBoxFlat_vuxq0")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_ckfno")
 min_value = 0.01
 value = 0.01
+metadata/_edit_use_anchors_ = true
 
 [node name="close" type="NinePatchRect" parent="MainPanel" unique_id=378299793]
 layout_mode = 0
@@ -142,6 +151,7 @@ offset_right = 370.0
 offset_bottom = 24.0
 texture = ExtResource("1_f3uwb")
 region_rect = Rect2(174, 387, 84, 87)
+metadata/_edit_use_anchors_ = true
 
 [node name="X" type="TextureButton" parent="MainPanel/close" unique_id=2145860184]
 layout_mode = 0
@@ -152,6 +162,7 @@ offset_bottom = 41.102203
 scale = Vector2(0.61393696, 0.55398285)
 texture_normal = SubResource("AtlasTexture_6jqjj")
 stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="MovementControlPanel" type="NinePatchRect" parent="MainPanel" unique_id=27208836]
 layout_mode = 0
@@ -164,6 +175,7 @@ patch_margin_left = 18
 patch_margin_top = 18
 patch_margin_right = 18
 patch_margin_bottom = 18
+metadata/_edit_use_anchors_ = true
 
 [node name="MobileControlToggle" type="Button" parent="MainPanel/MovementControlPanel" unique_id=199668745]
 clip_contents = true
@@ -175,6 +187,7 @@ offset_bottom = 97.0
 theme_override_fonts/font = ExtResource("6_ckfno")
 text = "Mobile Mode"
 autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="MainPanel/MovementControlPanel" unique_id=1576745340]
 layout_mode = 0
@@ -187,3 +200,4 @@ theme_override_fonts/font = ExtResource("6_ckfno")
 theme_override_font_sizes/font_size = 19
 text = "Controls"
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true

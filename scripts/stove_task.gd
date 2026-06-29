@@ -36,9 +36,13 @@ func _ready() -> void:
 	anim_sprite.animation_finished.connect(_on_animation_finished)
 	
 	# 4. Start the hidden timer! 
-	# CHANGE THIS TO 120.0 LATER FOR THE 2-MINUTE MARK
-	var timer = get_tree().create_timer(60.0) 
-	timer.timeout.connect(_start_fire)
+	# (Using a standard Timer node ensures it freezes when the game is paused for dialogue)
+	var start_timer = Timer.new()
+	start_timer.wait_time = 120.0 # 2-Minute mark to start the fire
+	start_timer.one_shot = true
+	add_child(start_timer)
+	start_timer.timeout.connect(_start_fire)
+	start_timer.start()
 	
 func _process(delta: float) -> void:
 	# 1. Constantly tell the global manager how much time is left!

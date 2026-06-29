@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dt21uxbnn23ms"
+path="res://.godot/imported/rice cooker.mp3-87007a27b40b9c6020a28afc5cac80dd.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds&music/rice cooker.mp3"
+dest_files=["res://.godot/imported/rice cooker.mp3-87007a27b40b9c6020a28afc5cac80dd.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

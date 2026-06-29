@@ -8,6 +8,7 @@
 [ext_resource type="SpriteFrames" uid="uid://ce0k6msln2xr3" path="res://assets/character animations/coming_soon.tres" id="4_acnt7"]
 [ext_resource type="Texture2D" uid="uid://bsms04gc2kf13" path="res://assets/static/Berong Files/Berongwalking.png" id="4_x8adc"]
 [ext_resource type="Script" uid="uid://shmm4srtlkh" path="res://scripts/animated_button.gd" id="6_acnt7"]
+[ext_resource type="Texture2D" uid="uid://0pii63hqbbgi" path="res://assets/character animations/BeronguniIdle.png" id="7_oppoo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_acnt7"]
 atlas = ExtResource("1_ybhx8")
@@ -41,29 +42,29 @@ region = Rect2(640, 0, 64, 64)
 atlas = ExtResource("3_axyow")
 region = Rect2(704, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_35imp"]
-atlas = ExtResource("3_axyow")
-region = Rect2(1152, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uiilm"]
-atlas = ExtResource("3_axyow")
-region = Rect2(1216, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xik4i"]
-atlas = ExtResource("3_axyow")
-region = Rect2(1280, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4qgrt"]
-atlas = ExtResource("3_axyow")
+[sub_resource type="AtlasTexture" id="AtlasTexture_tj4al"]
+atlas = ExtResource("7_oppoo")
 region = Rect2(1344, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h0jr0"]
-atlas = ExtResource("3_axyow")
+[sub_resource type="AtlasTexture" id="AtlasTexture_2frxv"]
+atlas = ExtResource("7_oppoo")
 region = Rect2(1408, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_br35l"]
-atlas = ExtResource("3_axyow")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ask2x"]
+atlas = ExtResource("7_oppoo")
 region = Rect2(1472, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0u23"]
+atlas = ExtResource("7_oppoo")
+region = Rect2(1536, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5i745"]
+atlas = ExtResource("7_oppoo")
+region = Rect2(1600, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83xjq"]
+atlas = ExtResource("7_oppoo")
+region = Rect2(1664, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bprr3"]
 atlas = ExtResource("3_axyow")
@@ -236,22 +237,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_35imp")
+"texture": SubResource("AtlasTexture_tj4al")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uiilm")
+"texture": SubResource("AtlasTexture_2frxv")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xik4i")
+"texture": SubResource("AtlasTexture_ask2x")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4qgrt")
+"texture": SubResource("AtlasTexture_u0u23")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_h0jr0")
+"texture": SubResource("AtlasTexture_5i745")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_br35l")
+"texture": SubResource("AtlasTexture_83xjq")
 }],
 "loop": true,
 "name": &"idle_front",

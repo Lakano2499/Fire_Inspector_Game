@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bwfi7167gpael"]
+
+[ext_resource type="Texture2D" uid="uid://d2ki5m8v3d4mv" path="res://assets/static/Modern_UI_Style_2_48x48.png" id="1_x2hj3"]
+[ext_resource type="Script" uid="uid://ixkejk3enabt" path="res://scripts/pointing.gd" id="2_nt55e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nt55e"]
+atlas = ExtResource("1_x2hj3")
+region = Rect2(531, 966, 45, 42)
+
+[node name="pointing" type="Sprite2D" unique_id=60246836]
+texture = SubResource("AtlasTexture_nt55e")
+script = ExtResource("2_nt55e")

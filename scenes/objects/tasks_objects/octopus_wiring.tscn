@@ -1,60 +1,69 @@
 [gd_scene format=3 uid="uid://ru0t1a0uk255"]
 
-[ext_resource type="Texture2D" uid="uid://drtwq7udvwywt" path="res://assets/static/ocotopuswiresss.png" id="1_lyn84"]
-[ext_resource type="Script" uid="uid://bo100mlcin2lt" path="res://scripts/interact_object.gd" id="2_wsxsx"]
-[ext_resource type="Script" uid="uid://4uh7ilv28vax" path="res://scripts/object_seen.gd" id="3_hgle8"]
+[ext_resource type="Texture2D" uid="uid://drtwq7udvwywt" path="res://assets/static/ocotopuswiresss.png" id="1_jb7ls"]
+[ext_resource type="Script" uid="uid://4uh7ilv28vax" path="res://scripts/object_seen.gd" id="2_lyn84"]
+[ext_resource type="Script" uid="uid://d28o657d133up" path="res://scripts/octopus_wiring.gd" id="2_wsxsx"]
+[ext_resource type="PackedScene" uid="uid://2u1cdp68vnpp" path="res://scenes/System UI/arrow.tscn" id="3_wsxsx"]
+[ext_resource type="PackedScene" uid="uid://cwnba3m3x03qm" path="res://scenes/objects/tasks_objects/spark.tscn" id="4_lyn84"]
+[ext_resource type="AudioStream" uid="uid://6px5fcspyb1i" path="res://assets/sounds&music/electric.mp3" id="5_elec_snd"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ch45e"]
-atlas = ExtResource("1_lyn84")
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgle8"]
+atlas = ExtResource("1_jb7ls")
 region = Rect2(0, 0, 90, 90)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0jfb8"]
-atlas = ExtResource("1_lyn84")
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpv6y"]
+atlas = ExtResource("1_jb7ls")
 region = Rect2(90, 0, 90, 90)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lvmvg"]
-atlas = ExtResource("1_lyn84")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ch45e"]
+atlas = ExtResource("1_jb7ls")
 region = Rect2(180, 0, 90, 90)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7dfiy"]
-atlas = ExtResource("1_lyn84")
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jfb8"]
+atlas = ExtResource("1_jb7ls")
 region = Rect2(270, 0, 90, 90)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7gxbg"]
-atlas = ExtResource("1_lyn84")
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvmvg"]
+atlas = ExtResource("1_jb7ls")
 region = Rect2(360, 0, 90, 90)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wrcdg"]
-atlas = ExtResource("1_lyn84")
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dfiy"]
+atlas = ExtResource("1_jb7ls")
 region = Rect2(450, 0, 90, 90)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dwnbf"]
-atlas = ExtResource("1_lyn84")
+[sub_resource type="AtlasTexture" id="AtlasTexture_7gxbg"]
+atlas = ExtResource("1_jb7ls")
 region = Rect2(540, 0, 90, 90)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8bsrn"]
-atlas = ExtResource("1_lyn84")
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrcdg"]
+atlas = ExtResource("1_jb7ls")
 region = Rect2(630, 0, 90, 90)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0a32s"]
-atlas = ExtResource("1_lyn84")
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwnbf"]
+atlas = ExtResource("1_jb7ls")
 region = Rect2(720, 0, 90, 90)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_f22pb"]
-atlas = ExtResource("1_lyn84")
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bsrn"]
+atlas = ExtResource("1_jb7ls")
 region = Rect2(810, 0, 90, 90)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lfj6l"]
-atlas = ExtResource("1_lyn84")
+[sub_resource type="AtlasTexture" id="AtlasTexture_0a32s"]
+atlas = ExtResource("1_jb7ls")
 region = Rect2(900, 0, 90, 90)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_txnpp"]
-atlas = ExtResource("1_lyn84")
+[sub_resource type="AtlasTexture" id="AtlasTexture_f22pb"]
+atlas = ExtResource("1_jb7ls")
 region = Rect2(990, 0, 90, 90)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_4ykxu"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_lfj6l"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgle8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpv6y")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ch45e")
 }, {
@@ -84,20 +93,14 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_f22pb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lfj6l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_txnpp")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b8evb"]
-size = Vector2(12, 4)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kott6"]
+size = Vector2(7, 0.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2r3gm"]
 radius = 61.008198
@@ -106,30 +109,45 @@ radius = 61.008198
 radius = 193.0
 
 [node name="octopus_wiring" type="StaticBody2D" unique_id=25875440]
+script = ExtResource("2_wsxsx")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1062707719]
-position = Vector2(-5.722046e-06, -1)
-scale = Vector2(0.32631615, 0.29449013)
-sprite_frames = SubResource("SpriteFrames_4ykxu")
-frame_progress = 0.8347227
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1937444302]
+sprite_frames = SubResource("SpriteFrames_lfj6l")
+frame = 11
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1985629646]
-position = Vector2(-1, 1)
-shape = SubResource("RectangleShape2D_b8evb")
+position = Vector2(-3.5, 7)
+shape = SubResource("RectangleShape2D_kott6")
 
-[node name="interact" type="Area2D" parent="." unique_id=650584505 node_paths=PackedStringArray("indicator")]
-visible = false
-script = ExtResource("2_wsxsx")
-indicator = NodePath("")
+[node name="interact" type="Area2D" parent="." unique_id=650584505]
 
 [node name="bluec_circle" type="CollisionShape2D" parent="interact" unique_id=1750687278]
+visible = false
+position = Vector2(-12, 1)
 shape = SubResource("CircleShape2D_2r3gm")
 
-[node name="area_seen" type="Area2D" parent="." unique_id=433111429 node_paths=PackedStringArray("highlight_node")]
+[node name="area_seen" type="Area2D" parent="." unique_id=433111429]
 visible = false
-script = ExtResource("3_hgle8")
-highlight_node = NodePath("../AnimatedSprite2D")
+script = ExtResource("2_lyn84")
 
 [node name="red_cirlce" type="CollisionShape2D" parent="area_seen" unique_id=917840209]
 shape = SubResource("CircleShape2D_8png8")
 debug_color = Color(0.8704634, 0.33197242, 0.3059655, 0.41960785)
+
+[node name="interact_indicator" parent="." unique_id=598562937 instance=ExtResource("3_wsxsx")]
+position = Vector2(-1, -15)
+
+[node name="spark" parent="." unique_id=2038971615 instance=ExtResource("4_lyn84")]
+position = Vector2(11, 1)
+
+[node name="spark2" parent="." unique_id=1714395256 instance=ExtResource("4_lyn84")]
+position = Vector2(-17, -5)
+
+[node name="spark3" parent="." unique_id=342996718 instance=ExtResource("4_lyn84")]
+position = Vector2(-4, 10)
+
+[node name="SparkSound" type="AudioStreamPlayer2D" parent="." unique_id=708199698]
+stream = ExtResource("5_elec_snd")
+max_distance = 200.0
+bus = &"SFX"

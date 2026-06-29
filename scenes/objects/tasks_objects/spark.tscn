@@ -96,6 +96,7 @@ radius = 4.1231055
 position = Vector2(-5.722046e-06, 0)
 scale = Vector2(0.32631615, 0.29449013)
 sprite_frames = SubResource("SpriteFrames_hs6mt")
+autoplay = "default"
 frame_progress = 0.92401606
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1985629646]

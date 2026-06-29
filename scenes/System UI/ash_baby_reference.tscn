@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://0fsqg2ljnbca"]
+
+[ext_resource type="AudioStream" uid="uid://cgp3jq62vvk6g" path="res://assets/sounds&music/ash_baby.mp3" id="1_25xoj"]
+[ext_resource type="AudioStream" uid="uid://dqp7mqypccnc3" path="res://assets/sounds&music/flashband.mp3" id="2_6d4et"]
+[ext_resource type="Script" uid="uid://b0vyialv4v04y" path="res://scripts/ash_baby_reference.gd" id="3_abr_script"]
+
+[node name="AshBabyReference" type="CanvasLayer" unique_id=1943859354]
+script = ExtResource("3_abr_script")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2131790666]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="AshBabySound" type="AudioStreamPlayer" parent="." unique_id=1547176727]
+stream = ExtResource("1_25xoj")
+volume_db = 24.0
+
+[node name="FlashBang" type="AudioStreamPlayer" parent="." unique_id=1708077581]
+stream = ExtResource("2_6d4et")

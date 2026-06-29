@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chihfjpa8ejvm"
-path="res://.godot/imported/2_LivingRoom_Black_Shadow_32x32.png-8784ac69ced7ab350966e7368901099b.ctex"
+uid="uid://crfitdpm7tikq"
+path="res://.godot/imported/phoneee.png-ca9e3555e6010417e58d0995e4d2a0ad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/decorations/assets folder/2_LivingRoom_Black_Shadow_32x32.png"
-dest_files=["res://.godot/imported/2_LivingRoom_Black_Shadow_32x32.png-8784ac69ced7ab350966e7368901099b.ctex"]
+source_file="res://assets/static/phoneee.png"
+dest_files=["res://.godot/imported/phoneee.png-ca9e3555e6010417e58d0995e4d2a0ad.ctex"]
 
 [params]
 

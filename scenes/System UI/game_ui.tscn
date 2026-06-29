@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://dot7qg6sv3lp2" path="res://assets/static/checklist_ui.png" id="3_2dskw"]
 [ext_resource type="PackedScene" uid="uid://cqmpr0fj6kww6" path="res://scenes/System UI/tutorial_pointer.tscn" id="4_agc66"]
 [ext_resource type="Script" uid="uid://shmm4srtlkh" path="res://scripts/animated_button.gd" id="4_f5txn"]
+[ext_resource type="AudioStream" uid="uid://dafxs8wg51nms" path="res://assets/sounds&music/alarm.mp3" id="6_mmnip"]
+[ext_resource type="AudioStream" uid="uid://cfy1ftpxu8d7k" path="res://assets/sounds&music/ingame_music.mp3" id="7_dbm4o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f5txn"]
 atlas = ExtResource("2_2dskw")
@@ -117,6 +119,7 @@ offset_top = 213.0
 offset_right = 150.0
 offset_bottom = 336.0
 texture = SubResource("AtlasTexture_agc66")
+metadata/_edit_use_anchors_ = true
 
 [node name="Knob" type="TextureRect" parent="MobileControls/JoystickBase" unique_id=1942599956]
 layout_mode = 1
@@ -132,6 +135,7 @@ offset_bottom = 34.5
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_mmnip")
+metadata/_edit_use_anchors_ = true
 
 [node name="Node" type="Node" parent="MobileControls" unique_id=2073629812]
 
@@ -143,6 +147,7 @@ offset_right = 535.00006
 offset_bottom = 265.0
 scale = Vector2(1.6458331, 1.4705887)
 texture_normal = SubResource("AtlasTexture_dbm4o")
+metadata/_edit_use_anchors_ = true
 
 [node name="ForDialogueChoiceBox" type="Control" parent="MobileControls/Node" unique_id=457631003]
 layout_mode = 3
@@ -161,6 +166,7 @@ script = ExtResource("4_f5txn")
 frame_1 = SubResource("AtlasTexture_gjbnf")
 frame_2 = SubResource("AtlasTexture_j4dfs")
 frame_3 = SubResource("AtlasTexture_odxgw")
+metadata/_edit_use_anchors_ = true
 
 [node name="down" type="TextureButton" parent="MobileControls/Node/ForDialogueChoiceBox" unique_id=1788034045]
 modulate = Color(1, 1, 1, 0.4745098)
@@ -175,3 +181,13 @@ script = ExtResource("4_f5txn")
 frame_1 = SubResource("AtlasTexture_gaoog")
 frame_2 = SubResource("AtlasTexture_vct5q")
 frame_3 = SubResource("AtlasTexture_2gxdx")
+metadata/_edit_use_anchors_ = true
+
+[node name="AlarmSound" type="AudioStreamPlayer" parent="." unique_id=71715841]
+stream = ExtResource("6_mmnip")
+volume_db = -11.209
+bus = &"SFX"
+
+[node name="InGameMusic" type="AudioStreamPlayer" parent="." unique_id=820107791]
+stream = ExtResource("7_dbm4o")
+bus = &"Music"

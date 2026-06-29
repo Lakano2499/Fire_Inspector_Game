@@ -14,6 +14,8 @@ extends StaticBody2D
 @export var custom_frames: SpriteFrames = null
 
 @onready var light_blocker = $LightBlocker
+@onready var open_sfx = $OpenSound
+@onready var close_sfx = $CloseSound
 
 # ── state ───────────────────────────────────────
 var _is_open: bool = false
@@ -78,6 +80,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			light_blocker.hide()
 			
 		_sprite.play("open_door") 
+		open_sfx.play()
 		Highlightable.remove(_sprite)
 
 
@@ -112,3 +115,4 @@ func _on_body_exited(body: Node2D) -> void:
 				light_blocker.show()
 				
 			_sprite.play("close_door")
+			close_sfx.play()

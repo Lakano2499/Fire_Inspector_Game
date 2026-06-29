@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://cj52erp02brpk"]
+
+[ext_resource type="Script" uid="uid://bc4qwne1wxtxa" path="res://scripts/cigarette.gd" id="1_8pybd"]
+[ext_resource type="Texture2D" uid="uid://bteo5vva5vp70" path="res://assets/static/cigarette.png" id="1_ka7vr"]
+[ext_resource type="Script" uid="uid://4uh7ilv28vax" path="res://scripts/object_seen.gd" id="2_8pybd"]
+[ext_resource type="PackedScene" uid="uid://2u1cdp68vnpp" path="res://scenes/System UI/arrow.tscn" id="3_8ad5x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqcei"]
+atlas = ExtResource("1_ka7vr")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nopkv"]
+atlas = ExtResource("1_ka7vr")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dfe0"]
+atlas = ExtResource("1_ka7vr")
+region = Rect2(1024, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knuvp"]
+atlas = ExtResource("1_ka7vr")
+region = Rect2(1152, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pslky"]
+atlas = ExtResource("1_ka7vr")
+region = Rect2(1280, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdg8a"]
+atlas = ExtResource("1_ka7vr")
+region = Rect2(1408, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7acou"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqcei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nopkv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8dfe0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knuvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pslky")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdg8a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kott6"]
+size = Vector2(7, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2r3gm"]
+radius = 61.008198
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8png8"]
+radius = 193.06476
+
+[node name="cigarette" type="StaticBody2D" unique_id=25875440]
+script = ExtResource("1_8pybd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2115141564]
+position = Vector2(7, -2)
+scale = Vector2(0.25439453, 0.3984375)
+sprite_frames = SubResource("SpriteFrames_7acou")
+autoplay = "default"
+frame_progress = 0.48928574
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1985629646]
+position = Vector2(-0.5, -0.25)
+shape = SubResource("RectangleShape2D_kott6")
+
+[node name="interact" type="Area2D" parent="." unique_id=650584505]
+
+[node name="bluec_circle" type="CollisionShape2D" parent="interact" unique_id=1750687278]
+visible = false
+position = Vector2(-12, 1)
+shape = SubResource("CircleShape2D_2r3gm")
+
+[node name="area_seen" type="Area2D" parent="." unique_id=433111429 node_paths=PackedStringArray("highlight_node")]
+visible = false
+script = ExtResource("2_8pybd")
+highlight_node = NodePath("../AnimatedSprite2D")
+
+[node name="red_cirlce" type="CollisionShape2D" parent="area_seen" unique_id=917840209]
+shape = SubResource("CircleShape2D_8png8")
+debug_color = Color(0.8704634, 0.33197242, 0.3059655, 0.41960785)
+
+[node name="interact_indicator" parent="." unique_id=598562937 instance=ExtResource("3_8ad5x")]
+position = Vector2(2, -16)
+scale = Vector2(0.76681346, 0.7863707)

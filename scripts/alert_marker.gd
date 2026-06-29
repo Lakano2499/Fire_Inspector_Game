@@ -4,12 +4,23 @@ extends Node2D
 @export var hover_offset := Vector2(0, -50) # Floating height
 @export var edge_margin := 20.0 # Screen edge padding
 
+# --- NEW: Heartbeat Variables ---
+@export var pulse_speed: float = 6.0 # How fast it beats
+@export var pulse_intensity: float = 0.3 # How big it gets when it beats
+
+var pulse_time: float = 0.0
+var base_scale: Vector2 = Vector2.ONE
+
 @onready var editor_ghost = $EditorGhost
 @onready var real_marker = $UILayer/RealMarker
 
 func _ready() -> void:
 	# Hide the editor visual so we only see the UI one in-game!
 	editor_ghost.hide()
+	
+	# Remember the original size of the marker so we don't stretch it forever
+	if real_marker:
+		base_scale = real_marker.scale
 
 func _process(_delta: float) -> void:
 	# 1. THE VISIBILITY FIX: Make the CanvasLayer listen to the root node
@@ -18,6 +29,12 @@ func _process(_delta: float) -> void:
 		return # Stop doing math if it's invisible!
 	else:
 		real_marker.show()
+		
+	# --- NEW: THE HEARTBEAT MATH ---
+	# This runs continuously, giving it a smooth, pulsing "pop"
+	pulse_time += _delta * pulse_speed
+	var scale_pop = abs(sin(pulse_time)) * pulse_intensity
+	real_marker.scale = base_scale * (1.0 + scale_pop)
 		
 	if target == null:
 		return
