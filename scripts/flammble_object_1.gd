@@ -16,6 +16,7 @@ extends StaticBody2D
 @onready var extinguisher_pivot = get_node_or_null("fire_extinguisher")
 @onready var spray_sprite = get_node_or_null("fire_extinguisher/AnimatedSprite2D")
 @onready var alert_marker = get_node_or_null("AlertMarker") # NEW: The Heartbeat Marker!
+@onready var pointing_indicator = get_node_or_null("pointing") # <-- NEW: Reference to the pointer
 
 var fires: Array = []
 var fire_scale: float = 0.5
@@ -31,6 +32,7 @@ var active_player: CharacterBody2D = null
 var is_manual_spraying: bool = false
 var spray_mode: String = ""
 var sweep_time: float = 0.0
+var inactivity_timer: float = 0.0 # <-- NEW: Timer to track how long they stop clicking
 
 # --- EMERGENCY VARIABLES ---
 var fail_timer: Timer
@@ -45,6 +47,8 @@ func _ready() -> void:
 	if indicator: indicator.hide()
 	if spray_sprite: spray_sprite.hide()
 	if extinguisher_pivot: extinguisher_pivot.hide()
+	if pointing_indicator: 
+		pointing_indicator.hide() # Start hidden
 	
 	# Setup the Emergency Timer!
 	fail_timer = Timer.new()
@@ -94,6 +98,23 @@ func _process(delta: float) -> void:
 	
 	var is_holding = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 	var can_spray = is_holding and (distance_to_fire <= max_spray_distance)
+	
+	# --- POINTER INACTIVITY LOGIC ---
+	if pointing_indicator:
+		if can_spray:
+			# They are actively spraying! Hide it and reset the clock.
+			pointing_indicator.hide()
+			inactivity_timer = 0.0
+		else:
+			# They stopped. Start counting!
+			inactivity_timer += delta
+			if inactivity_timer >= 3.0:
+				pointing_indicator.show()
+				pointing_indicator.z_index = 100 # Ensure it stays in front!
+				var anim_child = pointing_indicator.get_node_or_null("AnimatedSprite2D")
+				if anim_child and not anim_child.is_playing():
+					anim_child.play()
+	# -------------------------------------
 	
 	if can_spray:
 		if not spray_sprite.visible:
@@ -281,6 +302,7 @@ func put_out_local_fire() -> void:
 	$FireSound.stop()
 	
 	if indicator: indicator.hide()
+	if pointing_indicator: pointing_indicator.hide() # <-- ADD THIS LINE
 	
 	var timer = get_node_or_null("SpreadTimer")
 	if timer: timer.queue_free()
@@ -296,6 +318,7 @@ func _on_fail_timeout() -> void:
 func end_minigame() -> void:
 	is_manual_spraying = false
 	is_interacting = false 
+	if pointing_indicator: pointing_indicator.hide() # <-- ADD THIS LINE
 	
 	if spray_sprite:
 		spray_sprite.hide()
@@ -416,10 +439,23 @@ func _trigger_pass_minigame() -> void:
 
 	await DialogueManager.choice_selected
 	
-	# --- THE MISSING LINES: You accidentally deleted these! ---
-	TaskManager.player_can_move = false 
+	TaskManager.player_can_move = false
+	
+	# 1. Grace period: guarantees the player has lifted their finger from the dialogue box.
+	await get_tree().create_timer(0.5).timeout
+	
 	is_manual_spraying = true
 	sweep_time = 0.0
+	
+	# 2. Start at 3.0 so the pointer appears instantly on the first frame!
+	inactivity_timer = 3.0
+	
+	if pointing_indicator:
+		pointing_indicator.show()
+		pointing_indicator.z_index = 100 # Force it to render OVER the fire!
+		var anim_child = pointing_indicator.get_node_or_null("AnimatedSprite2D")
+		if anim_child:
+			anim_child.play()
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D:

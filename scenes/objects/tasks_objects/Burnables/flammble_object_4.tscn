@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://ce8ond61s0jjh" path="res://scenes/objects/tasks_objects/Burnables/fire.tscn" id="2_b3ri1"]
 [ext_resource type="Texture2D" uid="uid://chihfjpa8ejvm" path="res://assets/decorations/assets folder/burnables.png" id="3_twkwp"]
 [ext_resource type="PackedScene" uid="uid://2u1cdp68vnpp" path="res://scenes/System UI/arrow.tscn" id="4_d8r7p"]
-[ext_resource type="AudioStream" uid="uid://fire_snd" path="res://assets/sounds&music/fire.mp3" id="6_fire_snd"]
-[ext_resource type="AudioStream" uid="uid://extinguisher_snd" path="res://assets/sounds&music/fire extinguisher.mp3" id="7_ext_snd"]
 [ext_resource type="PackedScene" uid="uid://bnhgqrkt0kq0g" path="res://scenes/objects/tasks_objects/Burnables/fire_extinguisher.tscn" id="5_gxl7u"]
+[ext_resource type="AudioStream" uid="uid://hu7wjjsv3qje" path="res://assets/sounds&music/fire.mp3" id="6_fire_snd"]
+[ext_resource type="AudioStream" uid="uid://dno5a3c00u7ck" path="res://assets/sounds&music/fire extinguisher.mp3" id="7_ext_snd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w4oqq"]
 atlas = ExtResource("3_twkwp")
@@ -16,7 +16,7 @@ region = Rect2(113, 558, 112, 132)
 size = Vector2(100, 100)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p535q"]
-radius = 134.3019
+radius = 93.00538
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7edlg"]
 radius = 92.13577
@@ -37,7 +37,6 @@ position = Vector2(-2.5, -13)
 shape = SubResource("RectangleShape2D_7edlg")
 
 [node name="interact" type="Area2D" parent="." unique_id=1347675765]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interact" unique_id=1460364453]
 shape = SubResource("CircleShape2D_p535q")
@@ -57,10 +56,10 @@ position = Vector2(0, -76)
 z_index = 100
 position = Vector2(73, -33)
 
-[node name="FireSound" type="AudioStreamPlayer" parent="."]
+[node name="FireSound" type="AudioStreamPlayer" parent="." unique_id=1403108877]
 stream = ExtResource("6_fire_snd")
 bus = &"SFX"
 
-[node name="ExtinguisherSound" type="AudioStreamPlayer" parent="."]
+[node name="ExtinguisherSound" type="AudioStreamPlayer" parent="." unique_id=103466673]
 stream = ExtResource("7_ext_snd")
 bus = &"SFX"

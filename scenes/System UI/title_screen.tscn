@@ -107,10 +107,10 @@ frame_3 = ExtResource("12_sw1wx")
 
 [node name="player_name" type="Label" parent="." unique_id=1438950194]
 layout_mode = 0
-offset_left = 9.0
-offset_top = 332.0
-offset_right = 130.0
-offset_bottom = 355.0
+offset_left = 11.0
+offset_top = 330.0
+offset_right = 132.0
+offset_bottom = 353.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("15_tt3mg")
 text = "Welcome Guest"

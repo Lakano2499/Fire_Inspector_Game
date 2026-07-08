@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ycp8vwa875e1" path="res://scenes/System UI/alert_marker.tscn" id="6_vm06c"]
 [ext_resource type="AudioStream" uid="uid://hu7wjjsv3qje" path="res://assets/sounds&music/fire.mp3" id="7_fire_snd"]
 [ext_resource type="AudioStream" uid="uid://dno5a3c00u7ck" path="res://assets/sounds&music/fire extinguisher.mp3" id="8_ext_snd"]
+[ext_resource type="PackedScene" uid="uid://bwfi7167gpael" path="res://scenes/System UI/pointing.tscn" id="9_uqj50"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p535q"]
 atlas = ExtResource("1_a5eqy")
@@ -17,7 +18,7 @@ region = Rect2(4, 551, 55, 76)
 size = Vector2(53, 54)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p535q"]
-radius = 134.3019
+radius = 97.128784
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7edlg"]
 radius = 92.13577
@@ -38,7 +39,6 @@ position = Vector2(-0.5, -8)
 shape = SubResource("RectangleShape2D_g1sfk")
 
 [node name="interact" type="Area2D" parent="." unique_id=1347675765]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interact" unique_id=1460364453]
 shape = SubResource("CircleShape2D_p535q")
@@ -69,3 +69,7 @@ bus = &"SFX"
 [node name="ExtinguisherSound" type="AudioStreamPlayer" parent="." unique_id=391642588]
 stream = ExtResource("8_ext_snd")
 bus = &"SFX"
+
+[node name="pointing" parent="." unique_id=60246836 instance=ExtResource("9_uqj50")]
+z_index = 10
+position = Vector2(28, -5)

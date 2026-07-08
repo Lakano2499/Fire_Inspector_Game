@@ -96,4 +96,4 @@ stream = ExtResource("2_blow_snd")
 bus = &"SFX"
 
 [node name="pointing" parent="." unique_id=60246836 instance=ExtResource("4_c5q6b")]
-position = Vector2(324, 139)
+position = Vector2(327, 140)

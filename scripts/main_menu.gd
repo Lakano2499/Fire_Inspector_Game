@@ -38,16 +38,18 @@ func _ready() -> void:
 
 # --- NAVIGATION LOGIC ---
 func _on_tutorial_pressed() -> void:
-	# 1. Tell the brain where we want to go
-	TaskManager.target_level_path = "res://scenes/game_scenes/tutorial_map.tscn"
-	# 2. Instantly jump to the loading screen!
-	get_tree().change_scene_to_file("res://scenes/System UI/loading_screen.tscn") 
+	var path = "res://scenes/game_scenes/tutorial_map.tscn"
+	TaskManager.target_level_path = path
+	# Start loading IMMEDIATELY before the scene switch — no freeze!
+	ResourceLoader.load_threaded_request(path)
+	get_tree().change_scene_to_file("res://scenes/System UI/loading_screen.tscn")
 
 func _on_map1_pressed() -> void:
-	# 1. Tell the brain where we want to go
-	TaskManager.target_level_path = "res://scenes/game_scenes/game.tscn"
-	# 2. Instantly jump to the loading screen!
-	get_tree().change_scene_to_file("res://scenes/System UI/loading_screen.tscn") 
+	var path = "res://scenes/game_scenes/game.tscn"
+	TaskManager.target_level_path = path
+	# Start loading IMMEDIATELY before the scene switch — no freeze!
+	ResourceLoader.load_threaded_request(path)
+	get_tree().change_scene_to_file("res://scenes/System UI/loading_screen.tscn")
 
 func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/System UI/title_screen.tscn")

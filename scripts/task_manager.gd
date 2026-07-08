@@ -8,8 +8,11 @@ signal checklist_tutorial_clicked
 
 # --- SAVE DATA VARIABLES ---
 var current_user_id: String = "guest"
-var current_player_name: String = "" # <-- NEW: Variable to hold the player's name
-var save_file_path: String = "user://save_data_guest.json"
+var current_player_name: String = ""
+
+# --- CLOUD SAVING LOGIC VARIABLES ---
+var api_save_url: String = "http://192.168.1.2:8000/api/games/taskmaster/save" # Fallback
+var api_load_url: String = "http://192.168.1.2:8000/api/games/taskmaster/load" # Fallback
 
 # --- TIMER VARIABLES ---
 var time_elapsed: float = 0.0 
@@ -64,13 +67,16 @@ func _ready() -> void:
 			if url_params.has("user_id"):
 				current_user_id = str(url_params.get("user_id"))
 				
-			# --- NEW: Grab the player name ---
+			# Grab the player name
 			if url_params.has("player_name"):
 				current_player_name = str(url_params.get("player_name"))
 				
-	# Set the exact file path for this specific user
-	save_file_path = "user://save_data_" + str(current_user_id) + ".json"
-	
+		# --- NEW: Dynamically grab the website domain! ---
+		var current_domain = JavaScriptBridge.eval("window.location.origin")
+		if current_domain != null:
+			api_save_url = str(current_domain) + "/api/games/taskmaster/save"
+			api_load_url = str(current_domain) + "/api/games/taskmaster/load"
+				
 	load_progress()
 	reset_game_state()
 		
@@ -80,7 +86,7 @@ func reset_game_state() -> void:
 	gas_leak_penalty = 0
 	octopus_penalty = 0 
 	time_elapsed = 0.0
-	time_remaining = 300.0 
+	time_remaining = 480.0 
 	is_timer_running = true
 	
 	poured_water_on_grease = false
@@ -171,10 +177,6 @@ func are_all_tasks_complete() -> bool:
 	return true
 
 # --- CLOUD SAVING LOGIC ---
-
-# NOTE: Change these URLs to the actual API URLs your web developer gives you!
-var api_save_url: String = "https://yourwebsite.com/api/games/save"
-var api_load_url: String = "https://yourwebsite.com/api/games/load"
 
 func save_progress(map1_unlocked: bool) -> void:
 	# Don't try to save to the database if they are just testing locally

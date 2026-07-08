@@ -1,7 +1,7 @@
 extends AudioStreamPlayer
 
 # The exact file names of the scenes where music should STOP
-var muted_scenes = ["game.tscn", "assessment.tscn"]
+var muted_scenes = ["game.tscn", "assessment.tscn", "ash_baby_reference.tscn", "game_over.tscn"]
 
 func _process(_delta: float) -> void:
 	var current_scene = get_tree().current_scene

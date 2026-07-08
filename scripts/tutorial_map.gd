@@ -42,7 +42,7 @@ func _run_intro_sequence() -> void:
 		await DialogueManager.choice_selected
 	else:
 		TaskManager.is_mobile = false
-		DialogueManager.show_dialogue("System", "Computer selected. Press W,A,S,D to move, and 'F' to interact.", ["Continue"])
+		DialogueManager.show_dialogue("System", "Computer selected. Press W,A,S,D to move, and 'F' or 'ENTER' to interact.", ["Continue"])
 		await DialogueManager.choice_selected
 		
 	# --- Introduce the Checklist ---
@@ -102,4 +102,5 @@ func check_tutorial_complete() -> void:
 		get_tree().paused = false
 		
 		TaskManager.is_map1_unlocked = true
+		TaskManager.save_progress(true)
 		get_tree().change_scene_to_file("res://scenes/System UI/main_menu.tscn")
