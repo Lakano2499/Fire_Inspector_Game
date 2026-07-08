@@ -1,0 +1,193 @@
+[gd_scene format=3 uid="uid://btc2840xgci73"]
+
+[ext_resource type="Script" uid="uid://dt3jswvoes4md" path="res://scripts/game_ui.gd" id="1_2dskw"]
+[ext_resource type="Texture2D" uid="uid://d2ki5m8v3d4mv" path="res://assets/static/Modern_UI_Style_2_48x48.png" id="2_2dskw"]
+[ext_resource type="Texture2D" uid="uid://dot7qg6sv3lp2" path="res://assets/static/checklist_ui.png" id="3_2dskw"]
+[ext_resource type="PackedScene" uid="uid://cqmpr0fj6kww6" path="res://scenes/System UI/tutorial_pointer.tscn" id="4_agc66"]
+[ext_resource type="Script" uid="uid://shmm4srtlkh" path="res://scripts/animated_button.gd" id="4_f5txn"]
+[ext_resource type="AudioStream" uid="uid://dafxs8wg51nms" path="res://assets/sounds&music/alarm.mp3" id="6_mmnip"]
+[ext_resource type="AudioStream" uid="uid://cfy1ftpxu8d7k" path="res://assets/sounds&music/ingame_music.mp3" id="7_dbm4o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5txn"]
+atlas = ExtResource("2_2dskw")
+region = Rect2(480, 555, 45, 45)
+
+[sub_resource type="Gradient" id="Gradient_f5txn"]
+offsets = PackedFloat32Array(0, 0.09266409, 0.8648649, 0.98841697, 0.992278, 0.996139, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.008833828, 0.008833828, 0.008833828, 1, 0.09010506, 0.09010506, 0.09010506, 1, 0.5895605, 0.5895605, 0.5895605, 1, 0.8610039, 0.8610039, 0.8610039, 1, 0.6329915, 0.6329915, 0.6329915, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_agc66"]
+gradient = SubResource("Gradient_f5txn")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agc66"]
+atlas = ExtResource("2_2dskw")
+region = Rect2(963, 1494, 40, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmnip"]
+atlas = ExtResource("2_2dskw")
+region = Rect2(963, 1494, 39, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbm4o"]
+atlas = ExtResource("2_2dskw")
+region = Rect2(1920, 813, 48, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfrxj"]
+atlas = ExtResource("2_2dskw")
+region = Rect2(1920, 621, 48, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjbnf"]
+atlas = ExtResource("2_2dskw")
+region = Rect2(1920, 621, 48, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4dfs"]
+atlas = ExtResource("2_2dskw")
+region = Rect2(1968, 621, 48, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odxgw"]
+atlas = ExtResource("2_2dskw")
+region = Rect2(2016, 621, 48, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l87eq"]
+atlas = ExtResource("2_2dskw")
+region = Rect2(2064, 621, 48, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gaoog"]
+atlas = ExtResource("2_2dskw")
+region = Rect2(2064, 621, 48, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vct5q"]
+atlas = ExtResource("2_2dskw")
+region = Rect2(2112, 621, 48, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gxdx"]
+atlas = ExtResource("2_2dskw")
+region = Rect2(2160, 621, 48, 51)
+
+[node name="Game UI" type="CanvasLayer" unique_id=1116611700]
+process_mode = 3
+script = ExtResource("1_2dskw")
+
+[node name="Settings" type="TextureButton" parent="." unique_id=1360763848]
+offset_left = 589.0
+offset_top = 8.0
+offset_right = 634.0
+offset_bottom = 53.0
+texture_normal = SubResource("AtlasTexture_f5txn")
+
+[node name="CheckList" type="TextureButton" parent="." unique_id=1431260624]
+offset_left = 535.0
+offset_top = 7.0000043
+offset_right = 566.0
+offset_bottom = 46.000004
+scale = Vector2(1.199226, 1.1186723)
+size_flags_horizontal = 6
+size_flags_vertical = 8
+texture_normal = ExtResource("3_2dskw")
+
+[node name="interact_indicator" parent="CheckList" unique_id=25875440 instance=ExtResource("4_agc66")]
+position = Vector2(-24.182262, 51.847176)
+rotation = -2.0943952
+
+[node name="TimerLabel" type="Label" parent="." unique_id=1350427167]
+offset_left = 290.0
+offset_top = 7.0
+offset_right = 361.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 24
+text = "00:00"
+
+[node name="DangerOverlay" type="TextureRect" parent="." unique_id=651810558]
+modulate = Color(1, 0.32, 0.36533326, 1)
+self_modulate = Color(1, 0.04000002, 0.04000002, 0.4)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_agc66")
+
+[node name="MobileControls" type="Node" parent="." unique_id=1233248315]
+
+[node name="JoystickBase" type="TextureRect" parent="MobileControls" unique_id=1955957988]
+modulate = Color(0.7735171, 0.7557719, 0.7322035, 0.5372549)
+offset_left = 32.0
+offset_top = 213.0
+offset_right = 150.0
+offset_bottom = 336.0
+texture = SubResource("AtlasTexture_agc66")
+metadata/_edit_use_anchors_ = true
+
+[node name="Knob" type="TextureRect" parent="MobileControls/JoystickBase" unique_id=1942599956]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.5
+offset_top = -34.5
+offset_right = 35.5
+offset_bottom = 34.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_mmnip")
+metadata/_edit_use_anchors_ = true
+
+[node name="Node" type="Node" parent="MobileControls" unique_id=2073629812]
+
+[node name="InteractButton" type="TextureButton" parent="MobileControls/Node" unique_id=2067813230]
+modulate = Color(1, 1, 1, 0.4745098)
+offset_left = 535.00006
+offset_top = 265.0
+offset_right = 535.00006
+offset_bottom = 265.0
+scale = Vector2(1.6458331, 1.4705887)
+texture_normal = SubResource("AtlasTexture_dbm4o")
+metadata/_edit_use_anchors_ = true
+
+[node name="ForDialogueChoiceBox" type="Control" parent="MobileControls/Node" unique_id=457631003]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="up" type="TextureButton" parent="MobileControls/Node/ForDialogueChoiceBox" unique_id=1281974178]
+modulate = Color(1, 1, 1, 0.4745098)
+layout_mode = 0
+offset_left = 559.0
+offset_top = 201.99998
+offset_right = 607.0
+offset_bottom = 252.99998
+scale = Vector2(1.0833321, 0.9607842)
+texture_normal = SubResource("AtlasTexture_qfrxj")
+script = ExtResource("4_f5txn")
+frame_1 = SubResource("AtlasTexture_gjbnf")
+frame_2 = SubResource("AtlasTexture_j4dfs")
+frame_3 = SubResource("AtlasTexture_odxgw")
+metadata/_edit_use_anchors_ = true
+
+[node name="down" type="TextureButton" parent="MobileControls/Node/ForDialogueChoiceBox" unique_id=1788034045]
+modulate = Color(1, 1, 1, 0.4745098)
+layout_mode = 0
+offset_left = 559.0
+offset_top = 146.99998
+offset_right = 607.0
+offset_bottom = 197.99998
+scale = Vector2(1.0833321, 0.9607842)
+texture_normal = SubResource("AtlasTexture_l87eq")
+script = ExtResource("4_f5txn")
+frame_1 = SubResource("AtlasTexture_gaoog")
+frame_2 = SubResource("AtlasTexture_vct5q")
+frame_3 = SubResource("AtlasTexture_2gxdx")
+metadata/_edit_use_anchors_ = true
+
+[node name="AlarmSound" type="AudioStreamPlayer" parent="." unique_id=71715841]
+stream = ExtResource("6_mmnip")
+volume_db = -11.209
+bus = &"SFX"
+
+[node name="InGameMusic" type="AudioStreamPlayer" parent="." unique_id=820107791]
+stream = ExtResource("7_dbm4o")
+bus = &"Music"

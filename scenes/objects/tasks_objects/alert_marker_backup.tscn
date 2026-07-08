@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cr1olwfbvtct5"]
+
+[ext_resource type="Texture2D" uid="uid://dlxjy1bgy71xp" path="res://assets/static/Alert.png" id="1_bd326"]
+[ext_resource type="Script" uid="uid://jlqofh8h65jr" path="res://scripts/alert_marker.gd" id="2_6drld"]
+
+[node name="Alert Marker" type="Sprite2D" unique_id=2041049939]
+z_index = 100
+z_as_relative = false
+scale = Vector2(0.05926514, 0.06274414)
+texture = ExtResource("1_bd326")
+script = ExtResource("2_6drld")

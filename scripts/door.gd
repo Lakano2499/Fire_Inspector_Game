@@ -9,26 +9,22 @@ extends StaticBody2D
 #   press E  → plays "close_door" (frames 0→3, stops at 3)
 # ──────────────────────────────────────────────
 
-## Input action mapped to the interact key (default: E).
 @export var interact_action: String = "interact"
-
-## Start the door already open.
 @export var start_open: bool = false
-
-## Assign a different SpriteFrames here to give this door a unique look.
-## If left empty, the AnimatedSprite2D's built-in frames are used.
 @export var custom_frames: SpriteFrames = null
+
+@onready var light_blocker = $LightBlocker
+@onready var open_sfx = $OpenSound
+@onready var close_sfx = $CloseSound
 
 # ── state ───────────────────────────────────────
 var _is_open: bool = false
 var _player_nearby: bool = false
 var _animating: bool = false
-var _highlight_material: ShaderMaterial
 
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _body_col = $CollisionShape2D
 @onready var _area: Area2D = $Area2D
-
 
 func _ready() -> void:
 	_area.body_entered.connect(_on_body_entered)
@@ -43,20 +39,16 @@ func _ready() -> void:
 	_sprite.sprite_frames.set_animation_loop("open_door", false)
 	_sprite.sprite_frames.set_animation_loop("close_door", false)
 
-	# Setup highlight shader material
-	_highlight_material = ShaderMaterial.new()
-	_highlight_material.shader = load("res://assets/shaders/outline.gdshader")
-	# A much brighter, more solid yellow/gold to catch the eye:
-	_highlight_material.set_shader_parameter("line_color", Color(1.0, 0.9, 0.1, 1.0))
-	# Thicker outline:
-	_highlight_material.set_shader_parameter("line_thickness", 3.0)
-
 	if start_open:
 		_sprite.stop()
 		_sprite.animation = "open_door"
 		_sprite.frame = 3
 		_body_col.set_deferred("disabled", true)
 		_is_open = true
+		
+		# Make sure shadow is hidden if door starts open
+		if light_blocker:
+			light_blocker.hide()
 	else:
 		# Default closed state – show frame 0
 		_sprite.stop()
@@ -64,7 +56,10 @@ func _ready() -> void:
 		_sprite.frame = 0
 		_body_col.set_deferred("disabled", false)
 		_is_open = false
-
+		
+		# Force the shadow to be on when the door spawns closed!
+		if light_blocker:
+			light_blocker.show()	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not _player_nearby:
@@ -73,15 +68,20 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if _animating:
 		return
-
+		
 	# Only allow opening via interaction now
 	if not _is_open:
 		_is_open = true
 		_animating = true
 		_body_col.set_deferred("disabled", true)
-		_sprite.play("open_door") # frames 0→3, stops at frame 3
-		# Remove highlight while it opens
-		_sprite.material = null
+		
+		# --- NEW: Hide shadow ONLY when successfully opened ---
+		if light_blocker:
+			light_blocker.hide()
+			
+		_sprite.play("open_door") 
+		open_sfx.play()
+		Highlightable.remove(_sprite)
 
 
 func _on_anim_finished() -> void:
@@ -97,18 +97,22 @@ func _on_body_entered(body: Node2D) -> void:
 		_player_nearby = true
 		# Apply highlight if the door is closed and we can interact
 		if not _is_open:
-			_sprite.material = _highlight_material
+			Highlightable.apply(_sprite)
 
 
 func _on_body_exited(body: Node2D) -> void:
 	if body is CharacterBody2D:
 		_player_nearby = false
-		
-		# Always remove highlight when leaving
-		_sprite.material = null
+		Highlightable.remove(_sprite)
 		
 		# Auto-close the door when the player leaves the area
 		if _is_open and not _animating:
 			_is_open = false
 			_animating = true
+			
+			# --- NEW: Show shadow ONLY when successfully auto-closing ---
+			if light_blocker:
+				light_blocker.show()
+				
 			_sprite.play("close_door")
+			close_sfx.play()

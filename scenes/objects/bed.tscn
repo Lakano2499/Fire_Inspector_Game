@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bnudhxuwfdx7t"]
+
+[ext_resource type="Texture2D" uid="uid://dnwu3i6hewaq2" path="res://assets/static/bedroom.png" id="1_us1fn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jx3i1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5a0r"]
+atlas = ExtResource("1_us1fn")
+region = Rect2(390, 666, 52, 80)
+
+[node name="StaticBody2D" type="StaticBody2D" unique_id=119315424]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1087696165]
+shape = SubResource("RectangleShape2D_jx3i1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1236306506]
+position = Vector2(3.8146973e-06, -1.9073486e-06)
+scale = Vector2(1.75, 1.6875)
+texture = SubResource("AtlasTexture_g5a0r")

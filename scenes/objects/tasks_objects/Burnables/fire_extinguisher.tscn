@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://bnhgqrkt0kq0g"]
+
+[ext_resource type="Texture2D" uid="uid://ds1qiwhoqroo6" path="res://assets/static/PASS.png" id="1_psf6x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtkrd"]
+atlas = ExtResource("1_psf6x")
+region = Rect2(720, 0, 90, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_de326"]
+atlas = ExtResource("1_psf6x")
+region = Rect2(810, 0, 90, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3ody"]
+atlas = ExtResource("1_psf6x")
+region = Rect2(900, 0, 90, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yyqof"]
+atlas = ExtResource("1_psf6x")
+region = Rect2(990, 0, 90, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5itd3"]
+atlas = ExtResource("1_psf6x")
+region = Rect2(1080, 0, 90, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03hly"]
+atlas = ExtResource("1_psf6x")
+region = Rect2(1170, 0, 90, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37y1x"]
+atlas = ExtResource("1_psf6x")
+region = Rect2(1260, 0, 90, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yq7ng"]
+atlas = ExtResource("1_psf6x")
+region = Rect2(1350, 0, 90, 76)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w0td7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtkrd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_de326")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3ody")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yyqof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5itd3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03hly")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37y1x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yq7ng")
+}],
+"loop": true,
+"name": &"pull",
+"speed": 20.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_psf6x"]
+
+[node name="fire_extinguisher" type="StaticBody2D" unique_id=25875440]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1981296058]
+position = Vector2(-17, -16)
+scale = Vector2(0.46666667, 0.5)
+sprite_frames = SubResource("SpriteFrames_w0td7")
+animation = &"pull"
+frame = 7
+frame_progress = 0.06786298
+
+[node name="hit box" type="CollisionShape2D" parent="." unique_id=1985629646]
+position = Vector2(-24.000002, -24)
+rotation = -0.96369314
+shape = SubResource("CapsuleShape2D_psf6x")

@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://c4qssxgmiy5t1"]
+
+[ext_resource type="Script" uid="uid://da8p5xiy3ioee" path="res://scripts/flammble_object_1.gd" id="1_orc1i"]
+[ext_resource type="PackedScene" uid="uid://ce8ond61s0jjh" path="res://scenes/objects/tasks_objects/Burnables/fire.tscn" id="2_4m2up"]
+[ext_resource type="Texture2D" uid="uid://chihfjpa8ejvm" path="res://assets/decorations/assets folder/burnables.png" id="3_3vobn"]
+[ext_resource type="PackedScene" uid="uid://bnhgqrkt0kq0g" path="res://scenes/objects/tasks_objects/Burnables/fire_extinguisher.tscn" id="4_4m2up"]
+[ext_resource type="PackedScene" uid="uid://2u1cdp68vnpp" path="res://scenes/System UI/arrow.tscn" id="5_3vobn"]
+[ext_resource type="AudioStream" uid="uid://fire_snd" path="res://assets/sounds&music/fire.mp3" id="6_fire_snd"]
+[ext_resource type="AudioStream" uid="uid://extinguisher_snd" path="res://assets/sounds&music/fire extinguisher.mp3" id="7_ext_snd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orc1i"]
+atlas = ExtResource("3_3vobn")
+region = Rect2(390, 496, 54, 72)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4m2up"]
+size = Vector2(43, 18)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p535q"]
+radius = 134.3019
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7edlg"]
+radius = 92.13577
+
+[node name="flammble_object2" type="StaticBody2D" unique_id=25875440 groups=["player"]]
+script = ExtResource("1_orc1i")
+fire_scene = ExtResource("2_4m2up")
+ignition_delay = 60.0
+automatic_growth_time = 3.0
+aim_correction_degrees = -30.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1403750750]
+texture = SubResource("AtlasTexture_orc1i")
+
+[node name="fire_placement" type="CollisionShape2D" parent="." unique_id=155396829]
+position = Vector2(0.5, -11.25)
+shape = SubResource("RectangleShape2D_4m2up")
+
+[node name="interact" type="Area2D" parent="." unique_id=1347675765]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interact" unique_id=1460364453]
+shape = SubResource("CircleShape2D_p535q")
+
+[node name="heat_radius" type="Area2D" parent="." unique_id=2009423429]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="heat_radius" unique_id=695485203]
+shape = SubResource("CircleShape2D_7edlg")
+debug_color = Color(0.9774881, 0.11203387, 0.26124, 0.41960785)
+
+[node name="fire_extinguisher" parent="." unique_id=1116526476 instance=ExtResource("4_4m2up")]
+position = Vector2(50, -15)
+
+[node name="interact_indicator" parent="." unique_id=250657205 instance=ExtResource("5_3vobn")]
+z_index = 10
+position = Vector2(0, -76)
+
+[node name="FireSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_fire_snd")
+bus = &"SFX"
+
+[node name="ExtinguisherSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_ext_snd")
+bus = &"SFX"

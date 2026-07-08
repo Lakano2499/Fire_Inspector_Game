@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://6aucskdq14li"]
+
+[ext_resource type="Script" uid="uid://bsyv5drkf283t" path="res://scripts/victory.gd" id="1_6nwb3"]
+[ext_resource type="Texture2D" uid="uid://bv4scfj4os8po" path="res://assets/static/victory.png" id="1_lnq4g"]
+[ext_resource type="PackedScene" uid="uid://dj8110qqk6sbi" path="res://scenes/characters/berong.tscn" id="2_l0xk7"]
+[ext_resource type="AudioStream" uid="uid://b8awwvposb3bx" path="res://assets/sounds&music/cool victory.mp3" id="4_6nwb3"]
+
+[sub_resource type="Gradient" id="Gradient_l0xk7"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wrq07"]
+gradient = SubResource("Gradient_l0xk7")
+fill_from = Vector2(0.46153846, 0.8034188)
+fill_to = Vector2(0.47008547, 0)
+
+[node name="Victory" type="CanvasLayer" unique_id=1943859354]
+script = ExtResource("1_6nwb3")
+
+[node name="ColorRect" type="TextureRect" parent="." unique_id=1800985690]
+modulate = Color(0, 0.5245948, 0.56003183, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_wrq07")
+metadata/_edit_use_anchors_ = true
+
+[node name="Gameover" type="Sprite2D" parent="." unique_id=1384797187]
+position = Vector2(315.00003, 173.00002)
+scale = Vector2(0.4847973, 0.4375)
+texture = ExtResource("1_lnq4g")
+
+[node name="player1" parent="." unique_id=130816891 instance=ExtResource("2_l0xk7")]
+position = Vector2(313, 226.00002)
+scale = Vector2(2.125462, 1.8922083)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1798706912]
+stream = ExtResource("4_6nwb3")

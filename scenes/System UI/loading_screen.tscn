@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://tq4g5a0k38n5"]
+
+[ext_resource type="Script" uid="uid://c7jvy80rvylgw" path="res://scripts/loading_screen.gd" id="1_cv77l"]
+[ext_resource type="Shader" uid="uid://cjtplfhxdsxa6" path="res://shaders/loading_screen.gdshader" id="2_xv5ws"]
+[ext_resource type="Texture2D" uid="uid://cp31aqmibpxbo" path="res://assets/static/LOADINGTRUCK-sheet2.png" id="3_1wkmp"]
+[ext_resource type="FontFile" uid="uid://ca8188ftvgnay" path="res://assets/fonts/PixelifySans-Regular.ttf" id="4_xv5ws"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1wkmp"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xv5ws"]
+noise = SubResource("FastNoiseLite_1wkmp")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_65p0b"]
+shader = ExtResource("2_xv5ws")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_xv5ws")
+shader_parameter/progress = 0.0
+shader_parameter/pixel_size_x = 64.0
+shader_parameter/pixel_size_y = 36.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xv5ws"]
+atlas = ExtResource("3_1wkmp")
+region = Rect2(0, 0, 250, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65p0b"]
+atlas = ExtResource("3_1wkmp")
+region = Rect2(250, 0, 250, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqwg0"]
+atlas = ExtResource("3_1wkmp")
+region = Rect2(500, 0, 250, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pi8wl"]
+atlas = ExtResource("3_1wkmp")
+region = Rect2(750, 0, 250, 104)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mm3gb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xv5ws")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65p0b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqwg0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pi8wl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="LoadingScreen" type="CanvasLayer" unique_id=1675314669]
+layer = 100
+script = ExtResource("1_cv77l")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1599203336]
+material = SubResource("ShaderMaterial_65p0b")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.059064396, 0.07545782, 0.12011825, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1476912361]
+position = Vector2(320, 192)
+scale = Vector2(0.82, 0.692)
+sprite_frames = SubResource("SpriteFrames_mm3gb")
+autoplay = "default"
+frame_progress = 0.31778353
+
+[node name="LoadingText" type="RichTextLabel" parent="." unique_id=1306067444]
+offset_left = 264.0
+offset_top = 232.0
+offset_right = 368.0
+offset_bottom = 272.0
+theme_override_fonts/normal_font = ExtResource("4_xv5ws")
+bbcode_enabled = true
+text = "[center][wave amp=25.0 freq=10.0 connected=1]LOADING...[/wave][/center]"

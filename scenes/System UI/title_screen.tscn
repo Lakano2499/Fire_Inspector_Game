@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://dy175rft83te7"]
+
+[ext_resource type="Script" uid="uid://cd77b0l5774qq" path="res://scripts/title_screen.gd" id="1_t0fwv"]
+[ext_resource type="Texture2D" uid="uid://jebyxivgcgwi" path="res://assets/static/Title screen.png" id="1_tes2y"]
+[ext_resource type="Texture2D" uid="uid://cqebctdh11g5l" path="res://assets/animated buttons/Title Screen/play_button/play_button_1.tres" id="3_abg4n"]
+[ext_resource type="Texture2D" uid="uid://cghvatbec1irs" path="res://assets/animated buttons/Title Screen/play_button/Playbutton.png" id="3_x17jn"]
+[ext_resource type="Script" uid="uid://shmm4srtlkh" path="res://scripts/animated_button.gd" id="4_x17jn"]
+[ext_resource type="Texture2D" uid="uid://b54fjsw3y5ged" path="res://assets/animated buttons/Title Screen/play_button/play_button_2.tres" id="5_qfbny"]
+[ext_resource type="Texture2D" uid="uid://de13b43odckt6" path="res://assets/animated buttons/Title Screen/play_button/play_button_3.tres" id="6_b08ee"]
+[ext_resource type="Texture2D" uid="uid://d1bihrjxd6yix" path="res://assets/animated buttons/Title Screen/settings_button/settings_button_2.tres" id="7_b08ee"]
+[ext_resource type="Texture2D" uid="uid://dxjw20rt6850d" path="res://assets/animated buttons/Title Screen/settings_button/Settingsbutton.png" id="7_fqtkv"]
+[ext_resource type="Texture2D" uid="uid://bxebntopcc7be" path="res://assets/animated buttons/Title Screen/settings_button/settings_button_1.tres" id="8_fqtkv"]
+[ext_resource type="Texture2D" uid="uid://bnw3jejs5ts6b" path="res://assets/animated buttons/Title Screen/settings_button/settings_button_3.tres" id="9_1kgpc"]
+[ext_resource type="Texture2D" uid="uid://bajlpfbw2d6hh" path="res://assets/animated buttons/Title Screen/quit_button/quit_button_1.tres" id="11_01ipw"]
+[ext_resource type="Texture2D" uid="uid://b7tk85v7i4cyt" path="res://assets/animated buttons/Title Screen/quit_button/quit_button_3.tres" id="12_sw1wx"]
+[ext_resource type="Texture2D" uid="uid://b20gwot557ytl" path="res://assets/animated buttons/Title Screen/quit_button/quit_button_2.tres" id="13_tt3mg"]
+[ext_resource type="FontFile" uid="uid://ca8188ftvgnay" path="res://assets/fonts/PixelifySans-Regular.ttf" id="15_tt3mg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfbny"]
+atlas = ExtResource("3_x17jn")
+region = Rect2(8, 18, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kgpc"]
+atlas = ExtResource("7_fqtkv")
+region = Rect2(8, 18, 48, 32)
+
+[node name="TitleScreen" type="Control" unique_id=633585300]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t0fwv")
+
+[node name="Background" type="TextureRect" parent="." unique_id=754384636]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_tes2y")
+
+[node name="ButtonContainer" type="NinePatchRect" parent="." unique_id=1862329459]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.49600002
+anchor_top = 0.73300004
+anchor_right = 0.49600002
+anchor_bottom = 0.73300004
+offset_left = -56.440002
+offset_top = -45.880005
+offset_right = 64.56
+offset_bottom = 74.119995
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayButton" type="TextureButton" parent="ButtonContainer" unique_id=1039016830]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 0
+offset_left = -16.0
+offset_top = 6.0
+offset_right = 128.0
+offset_bottom = 70.0
+size_flags_horizontal = 4
+texture_normal = SubResource("AtlasTexture_qfbny")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("4_x17jn")
+frame_1 = ExtResource("3_abg4n")
+frame_2 = ExtResource("5_qfbny")
+frame_3 = ExtResource("6_b08ee")
+
+[node name="SettingsButton" type="TextureButton" parent="ButtonContainer" unique_id=1274176034]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 0
+offset_left = -5.0
+offset_top = 74.0
+offset_right = 115.0
+offset_bottom = 123.0
+size_flags_horizontal = 4
+texture_normal = SubResource("AtlasTexture_1kgpc")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("4_x17jn")
+frame_1 = ExtResource("8_fqtkv")
+frame_2 = ExtResource("7_b08ee")
+frame_3 = ExtResource("9_1kgpc")
+
+[node name="QuitButton" type="TextureButton" parent="ButtonContainer" unique_id=126233008]
+visible = false
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 0
+offset_left = 255.0
+offset_top = -32.0
+offset_right = 375.0
+offset_bottom = 17.0
+size_flags_horizontal = 4
+texture_normal = ExtResource("11_01ipw")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("4_x17jn")
+frame_1 = ExtResource("11_01ipw")
+frame_2 = ExtResource("13_tt3mg")
+frame_3 = ExtResource("12_sw1wx")
+
+[node name="player_name" type="Label" parent="." unique_id=1438950194]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 330.0
+offset_right = 132.0
+offset_bottom = 353.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("15_tt3mg")
+text = "Welcome Guest"
+
+[connection signal="pressed" from="ButtonContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="ButtonContainer/QuitButton" to="." method="_on_quit_button_pressed"]

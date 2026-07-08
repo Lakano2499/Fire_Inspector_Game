@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://w4lbo4c6buwr"]
+
+[ext_resource type="Script" uid="uid://b6sh0sxfab4cc" path="res://tutorial_basic_object.gd" id="1_rrm27"]
+[ext_resource type="Texture2D" uid="uid://6fdw7b3n6e4p" path="res://assets/tasks/Candlee.png" id="2_gm6l7"]
+[ext_resource type="Script" uid="uid://bo100mlcin2lt" path="res://scripts/interact_object.gd" id="3_7nat1"]
+[ext_resource type="Script" uid="uid://4uh7ilv28vax" path="res://scripts/object_seen.gd" id="4_6fqi1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0w2kj"]
+atlas = ExtResource("2_gm6l7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_817dn"]
+atlas = ExtResource("2_gm6l7")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsodu"]
+atlas = ExtResource("2_gm6l7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvl81"]
+atlas = ExtResource("2_gm6l7")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8phx"]
+atlas = ExtResource("2_gm6l7")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bw021"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0w2kj")
+}],
+"loop": false,
+"name": &"flame_off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_817dn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsodu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvl81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8phx")
+}],
+"loop": true,
+"name": &"flame_on",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5fclm"]
+size = Vector2(6, 24)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_egiwa"]
+radius = 40.012497
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_61kev"]
+radius = 80.024994
+
+[node name="TutorialBasicObject" type="StaticBody2D" unique_id=253516713]
+script = ExtResource("1_rrm27")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=889525735]
+position = Vector2(0.9999962, 0)
+scale = Vector2(0.859375, 0.80468756)
+sprite_frames = SubResource("SpriteFrames_bw021")
+animation = &"flame_off"
+autoplay = "flame_on"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=863853304]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_5fclm")
+
+[node name="interact" type="Area2D" parent="." unique_id=592279166]
+script = ExtResource("3_7nat1")
+
+[node name="bluec_circle" type="CollisionShape2D" parent="interact" unique_id=1157159001]
+shape = SubResource("CircleShape2D_egiwa")
+
+[node name="area_seen" type="Area2D" parent="." unique_id=78125581 node_paths=PackedStringArray("highlight_node")]
+script = ExtResource("4_6fqi1")
+highlight_node = NodePath("../Sprite2D")
+
+[node name="red_cirlce" type="CollisionShape2D" parent="area_seen" unique_id=389388465]
+shape = SubResource("CircleShape2D_61kev")
+debug_color = Color(0.8704634, 0.33197242, 0.3059655, 0.41960785)

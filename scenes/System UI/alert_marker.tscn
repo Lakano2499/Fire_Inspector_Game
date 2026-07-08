@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://ycp8vwa875e1"]
+
+[ext_resource type="Texture2D" uid="uid://dlxjy1bgy71xp" path="res://assets/static/Alert.png" id="1_vytht"]
+[ext_resource type="Script" uid="uid://jlqofh8h65jr" path="res://scripts/alert_marker.gd" id="2_in3wj"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vytht"]
+light_mode = 1
+
+[node name="AlertMarker" type="Node2D" unique_id=846611355]
+z_index = 100
+z_as_relative = false
+scale = Vector2(0.05926514, 0.06274414)
+script = ExtResource("2_in3wj")
+
+[node name="EditorGhost" type="Sprite2D" parent="." unique_id=1894050844]
+texture = ExtResource("1_vytht")
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=1889031284]
+layer = 100
+
+[node name="RealMarker" type="Sprite2D" parent="UILayer" unique_id=293380739]
+material = SubResource("CanvasItemMaterial_vytht")
+scale = Vector2(0.06258538, 0.06318875)
+texture = ExtResource("1_vytht")

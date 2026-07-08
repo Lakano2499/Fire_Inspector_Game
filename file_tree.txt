@@ -1,0 +1,143 @@
+res://
+|
++---assets/
+|   +---characters/
+|   |       player_girl.png  (.import)
+|   |       player_girl_spritesheet.png  (.import)
+|   |
+|   +---fonts/
+|   |       home_frame_3.tres
+|   |
+|   +---furniture/
+|   |   +---animated/
+|   |   |       (tilesets with animated furniture sprites + .import files)
+|   |   |       1_Generic_Black_Shadow_32x32.png
+|   |   |       2_LivingRoom_Black_Shadow_32x32.png
+|   |   |       3_Bathroom_Black_Shadow_32x32.png
+|   |   |       4_Bedroom_Black_Shadow_32x32.png
+|   |   |       5_Classroom_and_library_Black_Shadow_32x32.png
+|   |   |       6_Music_and_sport_Black_Shadow_32x32.png
+|   |   |       7_Art_Black_Shadow_32x32.png
+|   |   |       8_Gym_Black_Shadow_32x32.png
+|   |   |       9_Fishing_Black_Shadow_32x32.png
+|   |   |       12_Kitchen_Black_Shadow_32x32.png
+|   |   |       14_Basement_Black_Shadow_32x32.png
+|   |   |       20_Japanese_interiors_Black_Shadow_32x32.png
+|   |   |       21_Clothing_Store_Black_Shadow_32x32.png
+|   |   |       22_Museum_Black_Shadow_32x32.png
+|   |   |       22_Museum_Shadowless_32x32.png
+|   |   |       23_Television_and_Film_Studio_Black_Shadow_32x32.png
+|   |   |       24_Ice_Cream_Shop_Black_Shadow_32x32.png
+|   |   |       25_Shooting_Range_Black_Shadow_32x32.png
+|   |   |       26_Condominium_Black_Shadow_32x32.png
+|   |   |       living_room.png
+|   |   |
+|   |   +---static/
+|   |   |       1_Generic_Black_Shadow_32x32.png
+|   |   |       2_LivingRoom.png
+|   |   |       3_Bathroom.png
+|   |   |       4_Bedroom.png
+|   |   |       12_Kitchen.png
+|   |   |       14_Basement.png
+|   |   |       A5_Walls_Floors_2.png
+|   |   |       Hospital_01.png
+|   |   |       Walls_2_TILESET_A4_.png
+|   |   |
+|   |   \---theme set/
+|   |           Tileset_48x48_8.png
+|   |
+|   +---house_builder/
+|   |       baseboards.png
+|   |       borders.png
+|   |       entryways.png
+|   |       floors.png
+|   |       floor_connectors.png
+|   |       floor_paths.png
+|   |       floor_shadows'.png
+|   |       stairs.png
+|   |       walls.png
+|   |       walls2.png
+|   |
+|   +---shaders/
+|   |       outline.gdshader
+|   |       outline.gdshader.uid
+|   |
+|   +---tasks/
+|   |       candle.png
+|   |       candle with fire.png
+|   |       Candlee.png
+|   |       Candleee.png
+|   |       Candleeresized.png
+|   |       UI_32x32.png
+|   |
+|   \---tilesets/
+|           floors1.png
+|           void.png
+|
++---scenes/
+|   +---characters/
+|   |       beron.tscn
+|   |       player_1.tscn
+|   |
+|   +---game_scenes/
+|   |       game.tscn
+|   |       testing_scene_tilemap.tscn
+|   |
+|   +---objects/
+|   |   +---animated_objects/
+|   |   |       door.tscn
+|   |   |       door_but_vertical.tscn
+|   |   |
+|   |   +---static/
+|   |   |       B-C-D-E_Art.png
+|   |   |       B-C-D-E_Basement_01.png
+|   |   |       B-C-D-E_Bathroom_01.png
+|   |   |       B-C-D-E_Bedroom_01.png
+|   |   |       B-C-D-E_Bedroom_02.png
+|   |   |       B-C-D-E_Grocery_Store_01.png  (to _04)
+|   |   |       B-C-D-E_Gym_01.png
+|   |   |       B-C-D-E_Halloween_02.png
+|   |   |       B-C-D-E_Halloween_03.png
+|   |   |       B-C-D-E_Jail_01.png  (to _03)
+|   |   |       B-C-D-E_Japanese_Interiors_01.png  (to _02)
+|   |   |       B-C-D-E_Kitchen_01.png  (to _02)
+|   |   |       B-C-D-E_Living_Room_01.png  (to _02)
+|   |   |       B-C-D-E_Music_Sport_01.png
+|   |   |       bathroom.png
+|   |   |       bedroom.png
+|   |   |       cloth.png
+|   |   |       gamer_set.png
+|   |   |       generic.png
+|   |   |
+|   |   +---tasks_objects/
+|   |   |       arrow.tscn
+|   |   |       candle_task.tscn
+|   |   |
+|   |   +---task_mini_game/
+|   |   |       candle_blow.tscn
+|   |   |
+|   |   \---User Interface/
+|   |           title_screen.tscn
+|   |
+|   \---System UI/
+|           game_ui.tscn
+|           pause_menu.tscn
+|
++---scripts/
+|       animated_button.gd
+|       candle_blow.gd
+|       candle_task.gd
+|       door.gd
+|       game_ui.gd
+|       highlightable.gd
+|       home_frame_3.tres.gd
+|       interact_object.gd
+|       object_seen.gd
+|       pause_menu.gd
+|       player_1.gd
+|       title_screen.gd
+|
+\---Tilesets/
+        game_tile_set.tres
+        house.tres
+        static objects.tres

@@ -1,0 +1,202 @@
+[gd_scene format=3 uid="uid://dddypbcipd6mf"]
+
+[ext_resource type="Texture2D" uid="uid://vgwhp22ud5bq" path="res://assets/static/Modern_UI_Style_1_48x48.png" id="1_ha4nw"]
+[ext_resource type="FontFile" uid="uid://ca8188ftvgnay" path="res://assets/fonts/PixelifySans-Regular.ttf" id="2_3ynfh"]
+[ext_resource type="Texture2D" uid="uid://d2ki5m8v3d4mv" path="res://assets/static/Modern_UI_Style_2_48x48.png" id="3_ek17c"]
+[ext_resource type="Script" uid="uid://ddwkxkji3ra80" path="res://scripts/dialogue_manager.gd" id="4_k7wfs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ynfh"]
+atlas = ExtResource("1_ha4nw")
+region = Rect2(39, 1104, 66, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ek17c"]
+atlas = ExtResource("1_ha4nw")
+region = Rect2(300, 12, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7wfs"]
+atlas = ExtResource("1_ha4nw")
+region = Rect2(3, 627, 135, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dhxc"]
+atlas = ExtResource("1_ha4nw")
+region = Rect2(39, 900, 66, 72)
+
+[node name="DialogueManager" type="CanvasLayer" unique_id=592912870]
+process_mode = 3
+script = ExtResource("4_k7wfs")
+
+[node name="MainPanel" type="NinePatchRect" parent="." unique_id=1666217583]
+anchors_preset = -1
+anchor_left = -0.075
+anchor_top = 1.0
+anchor_right = 1.1125
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -96.0
+offset_right = -128.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("AtlasTexture_3ynfh")
+patch_margin_left = 18
+patch_margin_top = 18
+patch_margin_right = 18
+patch_margin_bottom = 18
+metadata/_edit_use_anchors_ = true
+
+[node name="DialogueText" type="RichTextLabel" parent="MainPanel" unique_id=186554068]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.24404761
+offset_left = 25.0
+offset_top = 16.0
+offset_right = 365.0
+offset_bottom = 79.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_3ynfh")
+text = "blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah"
+metadata/_edit_use_anchors_ = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MainPanel" unique_id=108880597]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 12.0
+offset_right = 25.0
+offset_bottom = 28.0
+texture = SubResource("AtlasTexture_ek17c")
+metadata/_edit_use_anchors_ = true
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="MainPanel" unique_id=768520398]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.24007936
+anchor_right = 0.24007936
+offset_left = 375.0
+offset_top = 80.0
+offset_right = 391.0
+offset_bottom = 96.0
+rotation = -3.1415927
+texture = SubResource("AtlasTexture_ek17c")
+metadata/_edit_use_anchors_ = true
+
+[node name="NinePatchRect3" type="NinePatchRect" parent="MainPanel" unique_id=775360499]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 80.00003
+offset_right = 25.0
+offset_bottom = 96.00003
+rotation = -1.5717852
+texture = SubResource("AtlasTexture_ek17c")
+metadata/_edit_use_anchors_ = true
+
+[node name="NinePatchRect4" type="NinePatchRect" parent="MainPanel" unique_id=1686838655]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.24007936
+anchor_right = 0.24007936
+offset_left = 375.0
+offset_top = 12.0
+offset_right = 391.0
+offset_bottom = 28.0
+rotation = -4.712389
+texture = SubResource("AtlasTexture_ek17c")
+metadata/_edit_use_anchors_ = true
+
+[node name="NameBox" type="NinePatchRect" parent="." unique_id=681158340]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 104.0
+offset_top = -131.0
+offset_right = -401.0
+offset_bottom = -84.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("AtlasTexture_k7wfs")
+patch_margin_left = 18
+patch_margin_top = 18
+patch_margin_right = 18
+patch_margin_bottom = 18
+metadata/_edit_use_anchors_ = true
+
+[node name="DialogueText2" type="RichTextLabel" parent="NameBox" unique_id=1626377562]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 20.0
+offset_right = 111.0
+offset_bottom = 44.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_3ynfh")
+text = "Berong"
+fit_content = true
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ChoiceBox" type="NinePatchRect" parent="." unique_id=1698373042]
+anchors_preset = -1
+anchor_left = -0.0625
+anchor_top = 1.0
+anchor_right = 1.1015625
+anchor_bottom = 1.0
+offset_left = 320.0
+offset_top = -184.0
+offset_right = -129.0
+offset_bottom = -93.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("AtlasTexture_0dhxc")
+patch_margin_left = 18
+patch_margin_top = 18
+patch_margin_right = 18
+patch_margin_bottom = 18
+metadata/_edit_use_anchors_ = true
+
+[node name="Choice 1" type="RichTextLabel" parent="ChoiceBox" unique_id=24243838]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.3783784
+offset_left = 15.0
+offset_top = 12.0
+offset_right = 176.0
+offset_bottom = 36.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_3ynfh")
+text = "Put a lid"
+metadata/_edit_use_anchors_ = true
+
+[node name="Choice 2" type="RichTextLabel" parent="ChoiceBox" unique_id=1511778850]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.3783784
+offset_left = 15.0
+offset_top = 36.0
+offset_right = 176.0
+offset_bottom = 60.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_3ynfh")
+text = "Put water"
+metadata/_edit_use_anchors_ = true
+
+[node name="Choice 3" type="RichTextLabel" parent="ChoiceBox" unique_id=594383724]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.3783784
+offset_left = 15.0
+offset_top = 60.0
+offset_right = 176.0
+offset_bottom = 84.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_3ynfh")
+text = "Choice 3"
+metadata/_edit_use_anchors_ = true
+
+[node name="ChoicePointer" type="NinePatchRect" parent="ChoiceBox" unique_id=703285722]
+layout_mode = 0
+offset_left = -8.0
+offset_top = 13.0
+offset_right = 11.0
+offset_bottom = 31.0
+texture = ExtResource("3_ek17c")
+region_rect = Rect2(687, 972, 21, 24)
+metadata/_edit_use_anchors_ = true
